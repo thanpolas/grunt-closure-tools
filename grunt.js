@@ -1,5 +1,7 @@
-module.exports = function(grunt) {
-
+module.exports = function(grunt) 
+{
+  grunt.loadTasks('tasks');
+  
   // Project configuration.
   grunt.initConfig({
     pkg: '<json:package.json>',
@@ -30,9 +32,20 @@ module.exports = function(grunt) {
       globals: {
         exports: true
       }
+    },
+    
+    testTask: {
+      opt: {
+        and: 'run',
+        ore: 2,
+        zit: {
+          go: 'before',
+          lol: [1, 2, 3]
+        }
+      }
     }
   });
 
   // Default task.
-  grunt.registerTask('default', 'test');
+  grunt.registerTask('default', 'testTask');
 };
