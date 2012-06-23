@@ -17,24 +17,28 @@
    closureBuilder:  {
      // any name that describes your operation
      targetName: {
-       // To find the builder executable we need either the path to
-       // closure library or directly the filepath to the builder:
+       // [Required] To find the builder executable we need either the path to
+       //    closure library or directly the filepath to the builder:
        closureLibraryPath: 'path/to/closure-library', // path to closure library
        builder: 'path/to/closurebuilder.py', // filepath to builder
 
-       // One of the two following options are required:
-       inputs: 'string|Array', // input files (just the starting point)
+       // [Required] One of the two following options are required:
+       inputs: 'string|Array', // input files (can just be the entry point)
        namespaces: 'string|Array', // namespaces
 
-       // [optional] paths to be traversed to build the dependencies
+       // [Optional] paths to be traversed to build the dependencies
        root: 'string|Array',
 
-       // [optional] if not set, will output to stdout
+       // [Optional] if not set, will output to stdout
        output_file: '',
 
-       // [optional] if we want builder to also compile
+       // [Optional] output_mode can be 'list', 'script' or 'compiled'.
+       //    If compile is set to true, 'compiled' mode is enforced
+       output_mode: '',
+
+       // [Optional] if we want builder to also compile
        compile: false, // boolean
-       compiler: '', // if we also want to compile, location of the compiler .jar
+       compiler: '', // the location of the compiler.jar
        compiler_options: {
          /**
           * Go wild here...
@@ -42,12 +46,7 @@
           * value can be a string or an array
           * If no value is required use null
           */
-       },
-
-       // [optional] output_mode can be 'list', 'script' or 'compiled'.
-       // If compile is set to true, 'compiled' mode is enforced
-       output_mode: ''
-
+       }
      }
    }
  };

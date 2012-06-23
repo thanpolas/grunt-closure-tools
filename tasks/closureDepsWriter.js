@@ -15,40 +15,40 @@
  */
 var gruntConfig = {
   closureDepsWriter: {
-   targetName: {
-     // To find the depswritter executable we need either the path to
-     // closure library or directly the filepath to the depswritter:
-     closureLibraryPath: 'path/to/closure-library', // path to closure library
-     depswritter: 'path/to/closurebuilder.py', // filepath to depswriter
-     
-     // optionally set file targets. Can be a string, array or 
-     // grunt base syntax (<config:...> or *)
-     files: 'path/to/awesome.js',
-     
-     output_file: '', // if not set, will output to stdout
-     options: {
-       // pass any directive to the depswritter executable. 
-       // There are only three possible options so here they are:
-       
-       // root directory to scan. Can be string or array
-       root: ['source/ss', 'source/closure-library', 'source/showcase'],
-       
-       // root with prefix takes a pair of strings separated with a space, 
-       // so proper way to use it is to suround with quotes.
-       // can be a string or array
-       root_with_prefix: '"source/ss ../.."',
-       
-       // string or array
-       path_with_depspath: ''
-     }
-   }
- } 
+     // any name that describes your operation
+    targetName: {
+      // [Required] To find the depswriter executable we need either the path to
+      //    closure library or directly the filepath to the depswriter:
+      closureLibraryPath: 'path/to/closure-library', // path to closure library
+      depswriter: 'path/to/depswriter.py', // filepath to depswriter
+
+      // [Optional] Set file targets. Can be a string, array or
+      //    grunt file syntax (<config:...> or *)
+      files: 'path/to/awesome.js',
+
+      // [Optional] If not set, will output to stdout
+      output_file: '',
+
+      options: {
+        // [Optional] Root directory to scan. Can be string or array
+        root: ['source/ss', 'source/closure-library', 'source/showcase'],
+
+        // [Optional] Root with prefix takes a pair of strings separated with a space,
+        //    so proper way to use it is to suround with quotes.
+        //    can be a string or array
+        root_with_prefix: '"source/ss ../../ss"',
+
+        // [Optional] string or array
+        path_with_depspath: ''
+      }
+    }
+  }
 }; 
  
  
 var fs = require('fs');
 
-// path to depswritter from closure lib path
+// path to depswriter from closure lib path
 var DEPSWRITER = '/closure/bin/build/depswriter.py';
 
 module.exports = function(grunt) {

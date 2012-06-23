@@ -16,25 +16,36 @@
  var gruntConfig = {
    closureCompiler:  {
      // any name that describes your task
-     targerName: { 
-       // Path to closure compiler
+     targerName: {
+       // [Required] Path to closure compiler
        closureCompiler: 'path/to/closure/compiler.jar',
-       
-       // Target files to compile, can also be an array of strings
-       js: 'path/to/file.js', 
-       
-       // Optionally set an output file
+
+       // [Required] Target files to compile. Can be a string, an array of strings
+       // or grunt file syntax (<config:...>, *)
+       js: 'path/to/file.js',
+
+       // [Optional] set an output file
        output_file: 'path/to/compiled_file.js',
-       
-       // the following options are optional.
+
+       // [Optional] Set Closure Compiler Directives here
        options: {
-         /** 
-          * any closure compiler directive can be used here
-          * any key will be used as an option for the compiler
-          * value can be a string or an array
+         /**
+          * Keys will be used as directives for the compiler
+          * values can be strings or arrays.
           * If no value is required use null
+          *
+          * The directive 'externs' is treated as a special case
+          * allowing a grunt file syntax (<config:...>, *)
+          *
+          * Following are some directive samples...
           */
-         
+          compilation_level: 'ADVANCED_OPTIMIZATIONS',
+          externs: ['path/to/file.js', '/source/**/*.js'],
+          define: ["'goog.DEBUG=false'"],
+          warning_level: 'verbose',
+          jscomp_off: ['checkTypes', 'fileoverviewTags'],
+          summary_detail_level: 3,
+          output_wrapper: '(function(){%output%}).call(this);'       
        }
      }
    }
@@ -67,8 +78,10 @@ module.exports = function(grunt) {
     if (false === command) {
       return false;
     }
-
+    
+    //
     // execute the task
+    //
     grunt.helper('executeCommand', command, done);
   });
 
@@ -81,13 +94,12 @@ module.exports = function(grunt) {
  */
 function validate(grunt, data)
 {
-
-
   // check for closure compiler file
   var compiler = data.closureCompiler;
-  // ---
+  
+  //
   // check compiler's existence
-  // ---
+  // 
   var fileExists = false;
   try {
       if (fs.lstatSync(compiler).isFile()) {
@@ -100,9 +112,9 @@ function validate(grunt, data)
     return false;
   }
 
-  // ---
+  // 
   // Check for js files
-  // ---
+  // 
   var js = grunt.file.expandFiles(data.js);
   if (0 === js.length) {
     grunt.log.warn('WARNING'.orange + ' :: ' + 'js'.red + ' files not defined');
@@ -132,9 +144,12 @@ function compileCommand(grunt, params, data)
 {
   var cmd = 'java -jar ' + params.compiler + ' ';
 
+  //
   // check for js files
-  if (params.js && params.js.length) {
-    cmd += grunt.helper('makeParam', params.js, '--js');
+  //
+  var js = grunt.file.expandFiles(params.js);
+  if (0 < js.length) {
+    cmd += grunt.helper('makeParam', js, '--js');
   }  
 
   // make it easy for our checks, create an options object if
@@ -146,9 +161,15 @@ function compileCommand(grunt, params, data)
     cmd += ' --js_output_file=' + params.output_file;
   }
 
+  //
   // start digging on options
+  //
   var opts = data.options;
   for(var directive in opts) {
+    // look for 'externs' special case
+    if ('externs' == directive) {
+      opts[directive] = grunt.file.expandFiles(opts[directive]);
+    }
     cmd += grunt.helper('makeParam', opts[directive], '--' + directive);
   }
 
