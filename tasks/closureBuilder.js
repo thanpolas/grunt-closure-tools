@@ -26,25 +26,28 @@
        inputs: 'string|Array', // input files (just the starting point)
        namespaces: 'string|Array', // namespaces
 
-       // paths to be traversed to build the dependencies
+       // [optional] paths to be traversed to build the dependencies
        root: 'string|Array',
 
-       // the following options are optional.
-       options: {
-         // 'list', 'script' or 'compiled'.
-         // If compiler is set 'compiled' mode is enforced
-         output_mode: '',
-         output_file: '', // if not set output to stdout
-         compiler: '', // if we also want to compile, location of the compiler .jar
-         compiler_options: {
-           /**
-            * Go wild here...
-            * any key will be used as an option for the compiler
-            * value can be a string or an array
-            * If no value is required use null
-            */
-         }
-       }
+       // [optional] if not set, will output to stdout
+       output_file: '',
+
+       // [optional] if we want builder to also compile
+       compile: false, // boolean
+       compiler: '', // if we also want to compile, location of the compiler .jar
+       compiler_options: {
+         /**
+          * Go wild here...
+          * any key will be used as an option for the compiler
+          * value can be a string or an array
+          * If no value is required use null
+          */
+       },
+
+       // [optional] output_mode can be 'list', 'script' or 'compiled'.
+       // If compile is set to true, 'compiled' mode is enforced
+       output_mode: ''
+
      }
    }
  };
@@ -178,29 +181,25 @@ function compileCommand(grunt, params, data)
 
   // check for inputs
   if (params.inputs && params.inputs.length) {
-    cmd += grunt.helper('stringOrArray', params.inputs, '-i');
+    cmd += grunt.helper('makeParam', params.inputs, '-i');
   }
   // check for namespaces
   if (params.namespaces && params.namespaces.length) {
-    cmd += grunt.helper('stringOrArray', params.namespaces, '-n');
+    cmd += grunt.helper('makeParam', params.namespaces, '-n');
   }
 
   // append root
-  cmd += grunt.helper('stringOrArray', params.root, '--root');
-
-  // make it easy for our checks, create an options object if
-  // it's not there
-  data.options || (data.options = {});
+  cmd += grunt.helper('makeParam', params.root, '--root=', true);
 
   // check type of operation
-  var op = data.options.output_mode || 'list';
+  var op = data.output_mode || 'list';
 
   // see if we have compiler set, will override any operation
-  if (data.options.compiler) {
+  if (data.compile) {
     // we got something, check if file is there...
     var fileExists = false;
     try {
-        if (fs.lstatSync(data.options.compiler).isFile()) {
+        if (fs.lstatSync(data.compiler).isFile()) {
           fileExists = true;
         }
     }
@@ -219,17 +218,25 @@ function compileCommand(grunt, params, data)
   cmd += ' -o ' + op;
 
   // check if output file is defined
-  if (data.options.output_file && data.options.output_file.length) {
-    cmd += ' --output_file=' + data.options.output_file;
-    output_file = data.options.output_file;
+  if (data.output_file && data.output_file.length) {
+    cmd += ' --output_file=' + data.output_file;
+    output_file = data.output_file;
   }
 
+  // --- 
   // if compile modestart digging
+  // ---
   if (compile) {
-    cmd += ' --compiler_jar=' + data.options.compiler;
+    cmd += ' --compiler_jar=' + data.compiler;
     // dive into all options
-    var opts = data.options.compiler_options;
+    var opts = data.compiler_options;
     for(var directive in opts) {
+      // check for externs option and intercept with grunt file expand
+      if ('externs' == directive) {
+        opts[directive] = grunt.file.expandFiles(opts[directive]);
+      }
+      
+      // check for type of value and act accordingly
       if (Array.isArray(opts[directive])) {
         // go through all values
         for (var i = 0, l = opts[directive].length; i < l; i++) {

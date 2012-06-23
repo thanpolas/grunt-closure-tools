@@ -18,27 +18,30 @@ module.exports = function(grunt) {
   var exec = require('child_process').exec;
   var gzip = require('zlib').gzip;
   var fs = require('fs');
-    
+
   /**
    * Generates a parameter to be concatenated to the shell command.
-   * Will determine if given parameter is an array, a string or null and 
+   * Will determine if given parameter is an array, a string or null and
    * takes proper action.
    *
    * @param {string|Array|null} param parameter to examine
    * @param {string} directive The directive (e.g. from -p path/to the '-p')
+   * @param {boolean=} opt_noSpace set to true if no space is required after directive
    * @return {string} " -p path/to" or if array " -p path/one -p path/two [...]"
    *      in case param is null, we simply return the directire (" -p")
    */
-  grunt.registerHelper('makeParam', function stringOrArray(param, directive) {
+  grunt.registerHelper('makeParam', function stringOrArray(param, directive, opt_noSpace) {
+    // use space or not after directive
+    var sp = (opt_noSpace ? '' : ' ');
     if (Array.isArray(param)) {
-      return ' ' + directive + ' ' + param.join(' ' + directive + ' ');
+      return ' ' + directive + sp + param.join(' ' + directive + sp);
     } else if (null === param){
       return ' ' + directive;
     } else {
-      return ' ' + directive + ' ' + String(param);
+      return ' ' + directive + sp + String(param);
     }
   });
-  
+
   /**
    * Will shell execute the given command
    *
@@ -49,19 +52,16 @@ module.exports = function(grunt) {
   grunt.registerHelper('executeCommand', function executeCommand(command, done){
     grunt.log.writeln('Executing: '.blue + command);
     exec(command, function execCB(err, stdout, stderr) {
-      console.log('run');
       if (err) {
         grunt.warn(err);
         done(false);
       }
-    
       grunt.log.writeln(stdout || stderr);
-      
       done(true);
-    });    
+    });
   });
-  
-  
+
+
   /**
    * Generate stats for the compiled output file
    *
@@ -74,12 +74,12 @@ module.exports = function(grunt) {
     var gzipSize = gzipSrc.length;
     var compiledSize = src.length;
     var percent = String((gzipSize / compiledSize).toFixed(2) * 100) + '%';
-    
-    grunt.log.writeln('Compiled size:\t' + String((compiledSize / 1024).toFixed(2)).green + 
+
+    grunt.log.writeln('Compiled size:\t' + String((compiledSize / 1024).toFixed(2)).green +
       ' kb \t(' + String(compiledSize).green + ' bytes)');
-    grunt.log.writeln('GZipped size:\t' + String((gzipSize / 1024).toFixed(2)).green + 
+    grunt.log.writeln('GZipped size:\t' + String((gzipSize / 1024).toFixed(2)).green +
       ' kb \t(' + String(gzipSize).green + ' bytes) -' + percent + ' compressed');
-    
-  });  
-  
+
+  });
+
 };

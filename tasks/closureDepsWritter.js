@@ -13,10 +13,43 @@
  *
  * Call from grunt as:
  */
+var gruntConfig = {
+  closureDepsWriter: {
+   targetName: {
+     // To find the depswritter executable we need either the path to
+     // closure library or directly the filepath to the depswritter:
+     closureLibraryPath: 'path/to/closure-library', // path to closure library
+     depswritter: 'path/to/closurebuilder.py', // filepath to depswriter
+     
+     // optionally set file targets. Can be a string, array or 
+     // grunt base syntax (<config:...> or *)
+     files: 'path/to/awesome.js',
+     
+     output_file: '', // if not set, will output to stdout
+     options: {
+       // pass any directive to the depswritter executable. 
+       // There are only three possible options so here they are:
+       
+       // root directory to scan. Can be string or array
+       root: ['source/ss', 'source/closure-library', 'source/showcase'],
+       
+       // root with prefix takes a pair of strings separated with a space, 
+       // so proper way to use it is to suround with quotes.
+       // can be a string or array
+       root_with_prefix: '"source/ss ../.."',
+       
+       // string or array
+       path_with_depspath: ''
+     }
+   }
+ } 
+}; 
+ 
+ 
 var fs = require('fs');
 
 // path to depswritter from closure lib path
-var DEPSWRITTER = '/closure/bin/build/depswriter.py';
+var DEPSWRITER = '/closure/bin/build/depswriter.py';
 
 module.exports = function(grunt) {
   grunt.registerMultiTask('closureDepsWriter', 'Google Closure Library Dependency Calculator script', function() {
@@ -44,6 +77,8 @@ module.exports = function(grunt) {
 
     // execute the task
     grunt.helper('executeCommand', command, done);
+    
+    console.log('Out');
 
   });
 
@@ -85,22 +120,9 @@ function validate(grunt, data)
     return false;
   }
 
-  // ---
-  // Check for inputs or paths
-  // ---
-  var paths = grunt.file.expandFiles(data.paths);
-  var inputs = data.inputs;
-  if (0 === paths.length && !inputs) {
-    grunt.log.error('ERROR'.red + ' :: ' + 'paths'.red + ' or ' + 'inputs'.red +
-    ' properties are required');
-    return false;
-  }
-
   // prep and return params object
   return {
-    depswriter: depswriter,
-    paths: paths,
-    inputs: inputs
+    depswriter: depswriter
   };
 
 };
@@ -118,38 +140,26 @@ function compileCommand(grunt, params, data)
 {
   var cmd = params.depswriter + ' ';
 
-  // check type of operation first
-  var op = data.options.output_mode || 'deps';
-
-  if ('deps' == op) {
-    // in case of deps mode, then add the -d flag by default
-    // use the JS Source folder by default or if option
-    // explicitly set use that
-    var deps = data.options.deps;
-    if (deps && deps.length) {
-      cmd += grunt.helper('stringOrArray', deps, '-d');
-    } else {
-        grunt.log.error('ERROR'.red + ' :: For "deps" type of operation, option ' +
-         'deps'.red + ' is required');
-        return false;
-
-    }
-  }
-  // check for paths
-  if (params.paths && params.paths.length) {
-    cmd += grunt.helper('stringOrArray', params.paths, '-p');
-  }
-  // check for inputs
-  if (params.inputs && params.inputs.length) {
-    cmd += grunt.helper('stringOrArray', params.inputs, '-i');
+  // ---
+  // Check for file targets...
+  // ---
+  var files = grunt.file.expandFiles(data.files || '');
+  for (var i = 0, l = files.length; i < l; i++) {
+    cmd += files[i] + ' ';
   }
 
-  // set operation
-  cmd += ' -o ' + op;
+  // ---
+  // loop through any options and add then up...
+  // ---
+  for(var directive in data.options) {
+    cmd += grunt.helper('makeParam', data.options[directive], '--' + directive + '=', true);
+  }
 
+  // ---
   // check if output file is defined
-  if (data.options.output_file && data.options.output_file.length) {
-    cmd += ' --output_file=' + data.options.output_path;
+  // ---
+  if (data.output_file && data.output_file.length) {
+    cmd += ' --output_file=' + data.output_file;
   }
 
   return cmd;
