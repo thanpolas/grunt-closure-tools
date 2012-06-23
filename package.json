@@ -1,0 +1,44 @@
+{
+  "name": "grunt-closure-tools",
+  "description": "Google Closure Library Tools for grunt, Compiler, DepsWriter, Builder.",
+  "version": "0.5.1",
+  "homepage": "https://github.com/thanpolas/grunt-closure-tools",
+  "author": {
+    "name": "Thanasis Polychronakis",
+    "email": "thanpolas@gmail.com",
+    "url": "http://twitter.com/thanpolas"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thanpolas/grunt-closure-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thanpolas/grunt-closure-tools/issues"
+  },
+  "licenses": [
+    {
+      "type": "APACHE2",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "main": "grunt.js",
+  "engines": {
+    "node": "~0.6.19"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.3.9"
+  },
+  "keywords": [
+    "Closure Compiler",
+    "minification",
+    "Closure Builder",
+    "Google Closure Library",
+    "Closure tools",
+    "Closure DepsWriter",
+    "Performance"
+  ]
+}
