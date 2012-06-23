@@ -6,9 +6,6 @@ Google Closure Tools for grunt:
 * **[Builder](https://developers.google.com/closure/library/docs/closurebuilder)** Concatenate your JS codebase to a single file, optionally also compile it
 * **[DepsWriter](https://developers.google.com/closure/library/docs/depswriter)** Calculate dependencies of your JS files and generate `deps.js`
 
-## WORK IN PROGRESS...
-
-
 ## Getting Started
 Install the module with: `npm install grunt-closure-tools`
 
@@ -30,7 +27,7 @@ All three tasks (compiler, builder and depswriter) are [multitasks](https://gith
 
 The Closure Compiler task has two requirements.
 
-  1. **`closureCompiler`** The location of the compiler. Find the latest compiler.jar file [in this link](http://closure-compiler.googlecode.com/files/compiler-latest.zip).
+  1. **`closureCompiler`** The location of the compiler. Find the latest compiler.jar file [here](http://closure-compiler.googlecode.com/files/compiler-latest.zip).
   2. **`js`** The js files you want to compile.
 
 You can fully configure how the compiler will behave, by setting directives in the `options`. Every key will be used as a directive for the compiler.
@@ -39,7 +36,7 @@ You can use grunt file syntax (`<config:...>` or `path/**/*.js`) for the `js` di
 
 Read more about the closure compiler [here](https://developers.google.com/closure/compiler/docs/api-tutorial3).
 
-#### The Closure Compiler Scaffolding
+#### Sample Config for The Closure Compiler
 ```javascript
 closureCompiler:  {
   // any name that describes your task
@@ -81,12 +78,12 @@ closureCompiler:  {
 
 The Closure Builder task has 2 required directives:
 
-  1. A way to find the `closurebuilder.py` file. One of the following two directives is required:
-    a. **`closureLibraryPath`** A path to the Google Closure Library. From there we can infer the location of the `closurebuilder.py` file
-    b. **`builder`** Directly reference the `closurebuilder.py` file
+  1. A way to find the `closurebuilder.py` file. One of the following two directives are required:
+    * **`closureLibraryPath`** A path to the Google Closure Library. From there we can infer the location of the closurebuilder.py file
+    * **`builder`** Directly reference the closurebuilder.py file
   2. An input method must be defined. One of the following two directives is required:
-    a. **`inputs`** String, array or grunt file syntax to define build targets
-    b. **`namespaces`** String or array to define namespaces to build
+    * **`inputs`** String, array or grunt file syntax to define build targets
+    * **`namespaces`** String or array to define namespaces to build
 
 The builder has the ability to compile *on-the-fly* the built files. To enable this option you need to set the option `compile` to boolean `true` and then set the location of the `compiler.jar` file via the `compiler` directive.
 
@@ -94,7 +91,7 @@ You can set all the compiler directives in the `compiler_options` object. The `j
 
 Read more about the closure builder in [this link](https://developers.google.com/closure/library/docs/closurebuilder).
 
-#### The Closure Builder Scaffolding
+#### Sample Config for The Closure Builder
 
 ```javascript
 closureBuilder:  {
@@ -125,7 +122,7 @@ closureBuilder:  {
     compiler_options: {
       /**
        * Go wild here...
-       * any key will be used as an option for the compiler
+       * any key will be used as a directive for the compiler
        * value can be a string or an array
        * If no value is required use null
        */
@@ -139,10 +136,12 @@ closureBuilder:  {
 The Closure DepsWriter task has 1 required directive:
 
   1. A way to find the `depswriter.py` file. One of the following two directives is required:
-    a. **`closureLibraryPath`** A path to the Google Closure Library. From there we can infer the location of the `depswriter.py` file
-    b. **`depswriter`** Directly reference the `depswriter.py` file
+    * **`closureLibraryPath`** A path to the Google Closure Library. From there we can infer the location of the depswriter.py file
+    * **`depswriter`** Directly reference the depswriter.py file
 
 Read more about depswriter [here](https://developers.google.com/closure/library/docs/depswriter).
+
+#### Sample Config for Closure DepsWriter 
 
 ```javascript
 closureDepsWriter: {
