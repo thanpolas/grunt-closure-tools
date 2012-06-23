@@ -16,7 +16,7 @@ npm install -g grunt-closure-tools
 Then register the task by adding the following line to your `grunt.js`:
 
 ```javascript
-grunt.loadNpmTasks('grunt-closure-compiler');
+grunt.loadNpmTasks('grunt-closure-tools');
 ```
 
 ## Documentation
@@ -141,7 +141,7 @@ The Closure DepsWriter task has 1 required directive:
 
 Read more about depswriter [here](https://developers.google.com/closure/library/docs/depswriter).
 
-#### Sample Config for Closure DepsWriter 
+#### Sample Config for The Closure DepsWriter 
 
 ```javascript
 closureDepsWriter: {
