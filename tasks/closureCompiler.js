@@ -54,6 +54,8 @@
 
 var fs = require('fs');
 
+// if we have an output file, we also set it to this var
+var output_file = false;
 
 module.exports = function(grunt) {
   grunt.registerMultiTask('closureCompiler', 'Google Closure Library compiler', function() {
@@ -82,7 +84,14 @@ module.exports = function(grunt) {
     //
     // execute the task
     //
-    grunt.helper('executeCommand', command, done);
+    grunt.helper('executeCommand', command, function(status){
+      if (status && output_file) {
+        grunt.helper('generateStats', output_file);
+        done(true);
+      } else {
+        done(status);
+      }      
+    });
   });
 
 };
@@ -159,6 +168,7 @@ function compileCommand(grunt, params, data)
   // check if output file is defined
   if (params.output_file && params.output_file.length) {
     cmd += ' --js_output_file=' + params.output_file;
+    output_file = params.output_file;
   }
 
   //
