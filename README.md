@@ -1,6 +1,6 @@
 # grunt-closure-tools
 
-Google Closure Tools for grunt:
+Google Closure Tools for [grunt](https://github.com/cowboy/grunt):
 
 * **[Compiler](https://developers.google.com/closure/compiler/)** Compile your JS code using the powerfull google closure compiler
 * **[Builder](https://developers.google.com/closure/library/docs/closurebuilder)** Concatenate your JS codebase to a single file, optionally also compile it
@@ -10,7 +10,7 @@ Google Closure Tools for grunt:
 Install the module with: `npm install grunt-closure-tools`
 
 ```shell
-npm install -g grunt-closure-tools
+npm install grunt-closure-tools
 ```
 
 Then register the task by adding the following line to your `grunt.js`:
