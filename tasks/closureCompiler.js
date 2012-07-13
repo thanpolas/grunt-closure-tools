@@ -45,23 +45,22 @@
           warning_level: 'verbose',
           jscomp_off: ['checkTypes', 'fileoverviewTags'],
           summary_detail_level: 3,
-          output_wrapper: '(function(){%output%}).call(this);'       
+          output_wrapper: '(function(){%output%}).call(this);'
        }
      }
    }
  };
- 
+
 
 var fs = require('fs');
-
-// if we have an output file, we also set it to this var
-var output_file = false;
+var path = require('path');
 
 module.exports = function(grunt) {
-  grunt.registerMultiTask('closureCompiler', 'Google Closure Library compiler', function() {
+  grunt.registerHelper('closureCompiler', function(data, done) {
 
-    var data = this.data;
-    var done = this.async();
+    if (done===undefined) {
+      grunt.warn("The closureCompiler helper must be passed a callback (task.async())");
+    }
 
     //
     // Validations
@@ -77,21 +76,28 @@ module.exports = function(grunt) {
     //
     var command = compileCommand(grunt, params, data);
 
-    if (false === command) {
+    if (!command) {
+      /* Skip file */
+      done(true);
       return false;
     }
-    
+
     //
     // execute the task
     //
     grunt.helper('executeCommand', command, function(status){
-      if (status && output_file) {
-        grunt.helper('generateStats', output_file);
+      if (status && params.output_file) {
+        grunt.helper('generateStats', params.output_file);
         done(true);
       } else {
         done(status);
-      }      
+      }
     });
+  });
+
+  grunt.registerMultiTask('closureCompiler', 'Google Closure Library compiler', function() {
+    var done = this.async();
+    grunt.helper('closureCompiler', this.data, this.async());
   });
 
 };
@@ -105,10 +111,10 @@ function validate(grunt, data)
 {
   // check for closure compiler file
   var compiler = data.closureCompiler;
-  
+
   //
   // check compiler's existence
-  // 
+  //
   var fileExists = false;
   try {
       if (fs.lstatSync(compiler).isFile()) {
@@ -121,16 +127,16 @@ function validate(grunt, data)
     return false;
   }
 
-  // 
+  //
   // Check for js files
-  // 
+  //
   var js = grunt.file.expandFiles(data.js);
   if (0 === js.length) {
     grunt.log.warn('WARNING'.orange + ' :: ' + 'js'.red + ' files not defined');
   }
-  
 
-  
+
+
   // prep and return params object
   return {
     compiler: compiler,
@@ -159,7 +165,7 @@ function compileCommand(grunt, params, data)
   var js = grunt.file.expandFiles(params.js);
   if (0 < js.length) {
     cmd += grunt.helper('makeParam', js, '--js');
-  }  
+  }
 
   // make it easy for our checks, create an options object if
   // it's not there
@@ -167,8 +173,25 @@ function compileCommand(grunt, params, data)
 
   // check if output file is defined
   if (params.output_file && params.output_file.length) {
+    grunt.file.mkdir(path.dirname(params.output_file));
+    if (path.existsSync(params.output_file)) {
+        var docompile = false;
+        var out_mtime =fs.lstatSync(params.output_file).mtime;
+        for(var i = 0; i < js.length; i++) {
+            if (fs.lstatSync(js[i]).mtime > out_mtime) {
+                docompile = true;
+                break;
+            }
+        }
+        if (!docompile) {
+            grunt.info("Skipping " + params.output_file + " (Not modified)");
+            return false;
+        }
+    }
     cmd += ' --js_output_file=' + params.output_file;
     output_file = params.output_file;
+  } else {
+    params.output_file = false;
   }
 
   //
