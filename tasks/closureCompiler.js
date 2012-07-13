@@ -184,7 +184,8 @@ function compileCommand(grunt, params, data)
             }
         }
         if (!docompile) {
-            return undefined;
+            grunt.info("Skipping " + params.output_file + " (Not modified)");
+            return false;
         }
     }
     cmd += ' --js_output_file=' + params.output_file;
