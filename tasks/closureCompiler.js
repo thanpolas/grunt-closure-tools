@@ -126,6 +126,14 @@ function validate(grunt, data)
     grunt.log.error('ERROR'.red + ' :: compiler filepath not valid: ' + compiler.red);
     return false;
   }
+  
+  //
+  // Process output file
+  //
+  var output_file = data.output_file;
+  if(grunt.utils._.isString(output_file)) {
+    output_file = grunt.template.process(output_file);
+  }
 
   //
   // Check for js files
@@ -141,7 +149,7 @@ function validate(grunt, data)
   return {
     compiler: compiler,
     js: js,
-    output_file: data.output_file
+    output_file: output_file
   };
 
 };
