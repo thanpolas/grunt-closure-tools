@@ -1,4 +1,4 @@
-# grunt-closure-tools
+# Grunt Closure Tools
 
 Google Closure Tools for [grunt](https://github.com/cowboy/grunt):
 
@@ -141,7 +141,7 @@ The Closure DepsWriter task has 1 required directive:
 
 Read more about depswriter [here](https://developers.google.com/closure/library/docs/depswriter).
 
-#### Sample Config for The Closure DepsWriter 
+#### Sample Config for The Closure DepsWriter
 
 ```javascript
 closureDepsWriter: {
@@ -174,6 +174,10 @@ closureDepsWriter: {
   }
 }
 ```
+
+## Release History
+
+You can view the full release history in the [changelog](CHANGELOG.md)
 
 ## License
 Copyright (c) 2012 Thanasis Polychronakis
