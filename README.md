@@ -177,7 +177,7 @@ closureDepsWriter: {
 
 ## Release History
 
-You can view the full release history in the [changelog](CHANGELOG.md)
+You can view the full release history in the [changelog](https://github.com/thanpolas/grunt-closure-tools/blob/master/CHANGELOG.md)
 
 ## License
 Copyright (c) 2012 Thanasis Polychronakis
