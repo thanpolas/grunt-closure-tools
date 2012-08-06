@@ -218,8 +218,8 @@ function compileCommand(grunt, params, data)
 
   // check if output file is defined
   if (data.output_file && data.output_file.length) {
-    cmd += ' --output_file=' + data.output_file;
-    output_file = data.output_file;
+    output_file = grunt.template.process(data.output_file);
+    cmd += ' --output_file=' + output_file;
   }
 
   // --- 
