@@ -182,3 +182,5 @@ You can view the full release history in the [changelog](https://github.com/than
 ## License
 Copyright (c) 2012 Thanasis Polychronakis
 Licensed under the [APACHE2 license](http://www.apache.org/licenses/LICENSE-2.0).
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/5eb066586b681b39b82e56719f75faaa "githalytics.com")](http://githalytics.com/thanpolas/grunt-closure-tools)
