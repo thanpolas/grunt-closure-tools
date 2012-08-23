@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/thanpolas/grunt-closure-tools.png)](http://travis-ci.org/thanpolas/grunt-closure-tools)
 # Grunt Closure Tools
 
 Google Closure Tools for [grunt](https://github.com/cowboy/grunt):
