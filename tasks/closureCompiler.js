@@ -192,7 +192,7 @@ function compileCommand(grunt, params, data)
             }
         }
         if (!docompile) {
-            grunt.info("Skipping " + params.output_file + " (Not modified)");
+            grunt.log.writeln("Skipping " + params.output_file + " (Not modified)");
             return false;
         }
     }
