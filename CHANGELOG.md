@@ -1,5 +1,8 @@
 # Grunt Closure Tools :: Changelog
 
+### v0.6.4 :: 2012/10/03
+ * Fixed crashing bug with grunt.info() call in 2 `tasks/closureCompiler.js` (by [nicolacity](https://github.com/nicolacity))
+ * Upgraded grunt dependency to `0.3.16`
 ### v0.6.3 :: 2012/08/06
 
  * Converted the compiler core functionality from a multitask to a helper (by [izb](https://github.com/izb))

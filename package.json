@@ -2,13 +2,12 @@
   "name": "grunt-closure-tools",
   "description": "Google Closure Library Tools for grunt, Compiler, DepsWriter, Builder.",
   "version": "0.6.4",
-  "homepage": "https://github.com/nicolacity/grunt-closure-tools",
+  "homepage": "https://github.com/thanpolas/grunt-closure-tools",
   "author": {
     "name": "Thanasis Polychronakis",
     "email": "thanpolas@gmail.com",
     "url": "http://twitter.com/thanpolas"
   },
-  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/thanpolas/grunt-closure-tools.git"
@@ -31,10 +30,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "grunt": "~0.3.10"
-  },
-  "devDependencies": {
-    "grunt": "~0.3.10"
+    "grunt": "~0.3.16"
   },
   "keywords": [
     "gruntplugin",
