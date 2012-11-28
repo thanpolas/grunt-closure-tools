@@ -51,6 +51,10 @@ closureCompiler:  {
     // [Optional] set an output file
     output_file: 'path/to/compiled_file.js',
 
+    // [Optional] set to true if you want to check if files were modified
+    // before starting compilation (can save some time in large sourcebases)
+    checkModified: true,
+
     // [Optional] Set Closure Compiler Directives here
     options: {
       /**
@@ -176,6 +180,9 @@ closureDepsWriter: {
 ```
 
 ## Release History
+
+- **v.0.6.6**, *28 November 2012*
+  - Compiler: Made the built in 'data checking' feature optional, added the `checkModified` option as per [nicolacity's](https://github.com/nicolacity) suggestion on [issue #8](https://github.com/thanpolas/grunt-closure-tools/issues/8).
 
 - **v0.6.5**, *27 November 2012*
   - Builder: `closureLibraryPath`, `inputs`, `root` directives now parse grunt directives.

@@ -1,5 +1,8 @@
 # Grunt Closure Tools :: Changelog
 
+- **v.0.6.6**, *28 November 2012*
+  - Compiler: Made the built in 'data checking' feature optional, added the `checkModified` option as per [nicolacity's](https://github.com/nicolacity) suggestion on [issue #8](https://github.com/thanpolas/grunt-closure-tools/issues/8).
+
 - **v0.6.5**, *27 November 2012*
   - Builder: `closureLibraryPath`, `inputs`, `root` directives now parse grunt directives.
   - Compiler: Fixed percentage, now shows how much the compile file gets reduced.

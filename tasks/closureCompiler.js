@@ -14,42 +14,46 @@
  * Call from grunt as:
  */
  var gruntConfig = {
-   closureCompiler:  {
-     // any name that describes your task
-     targerName: {
-       // [Required] Path to closure compiler
-       closureCompiler: 'path/to/closure/compiler.jar',
+  closureCompiler:  {
+    // any name that describes your task
+    targerName: {
+      // [Required] Path to closure compiler
+      closureCompiler: 'path/to/closure/compiler.jar',
 
-       // [Required] Target files to compile. Can be a string, an array of strings
-       // or grunt file syntax (<config:...>, *)
-       js: 'path/to/file.js',
+      // [Required] Target files to compile. Can be a string, an array of strings
+      // or grunt file syntax (<config:...>, *)
+      js: 'path/to/file.js',
 
-       // [Optional] set an output file
-       output_file: 'path/to/compiled_file.js',
+      // [Optional] set an output file
+      output_file: 'path/to/compiled_file.js',
 
-       // [Optional] Set Closure Compiler Directives here
-       options: {
-         /**
-          * Keys will be used as directives for the compiler
-          * values can be strings or arrays.
-          * If no value is required use null
-          *
-          * The directive 'externs' is treated as a special case
-          * allowing a grunt file syntax (<config:...>, *)
-          *
-          * Following are some directive samples...
-          */
-          compilation_level: 'ADVANCED_OPTIMIZATIONS',
-          externs: ['path/to/file.js', '/source/**/*.js'],
-          define: ["'goog.DEBUG=false'"],
-          warning_level: 'verbose',
-          jscomp_off: ['checkTypes', 'fileoverviewTags'],
-          summary_detail_level: 3,
-          output_wrapper: '(function(){%output%}).call(this);'
-       }
-     }
-   }
- };
+      // [Optional] set to true if you want to check if files were modified
+      // before starting compilation (can save some time in large sourcebases)
+      checkModified: true,
+
+      // [Optional] Set Closure Compiler Directives here
+      options: {
+        /**
+        * Keys will be used as directives for the compiler
+        * values can be strings or arrays.
+        * If no value is required use null
+        *
+        * The directive 'externs' is treated as a special case
+        * allowing a grunt file syntax (<config:...>, *)
+        *
+        * Following are some directive samples...
+        */
+        compilation_level: 'ADVANCED_OPTIMIZATIONS',
+        externs: ['path/to/file.js', '/source/**/*.js'],
+        define: ["'goog.DEBUG=false'"],
+        warning_level: 'verbose',
+        jscomp_off: ['checkTypes', 'fileoverviewTags'],
+        summary_detail_level: 3,
+        output_wrapper: '(function(){%output%}).call(this);'
+      }
+    }
+  }
+};
 
 
 var fs = require('fs');
@@ -151,7 +155,7 @@ function validate(grunt, data)
     output_file: output_file
   };
 
-};
+}
 
 
 /**
@@ -181,9 +185,13 @@ function compileCommand(grunt, params, data)
   // check if output file is defined
   if (params.output_file && params.output_file.length) {
     grunt.file.mkdir(path.dirname(params.output_file));
-    if (path.existsSync(params.output_file)) {
+
+    if (params.checkModified && path.existsSync(params.output_file)) {
         var docompile = false;
         var out_mtime =fs.lstatSync(params.output_file).mtime;
+
+        console.log('CHECKING modified...');
+
         for(var i = 0; i < js.length; i++) {
             if (fs.lstatSync(js[i]).mtime > out_mtime) {
                 docompile = true;
@@ -195,8 +203,9 @@ function compileCommand(grunt, params, data)
             return false;
         }
     }
+
     cmd += ' --js_output_file=' + params.output_file;
-    output_file = params.output_file;
+    //output_file = params.output_file;
   } else {
     params.output_file = false;
   }
@@ -214,5 +223,5 @@ function compileCommand(grunt, params, data)
   }
 
   return cmd;
-};
+}
 
