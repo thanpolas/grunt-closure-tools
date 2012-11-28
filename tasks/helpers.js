@@ -27,18 +27,37 @@ module.exports = function(grunt) {
    * @param {string|Array|null} param parameter to examine
    * @param {string} directive The directive (e.g. from -p path/to the '-p')
    * @param {boolean=} opt_noSpace set to true if no space is required after directive
+   * @param {boolean=} opt_parsePath If true each param item will be handled as
+   *                                 a path and parsed via grunt expandFiles.
    * @return {string} " -p path/to" or if array " -p path/one -p path/two [...]"
    *      in case param is null, we simply return the directire (" -p")
    */
-  grunt.registerHelper('makeParam', function stringOrArray(param, directive, opt_noSpace) {
+  grunt.registerHelper('makeParam', function stringOrArray(param, directive
+      , opt_noSpace, opt_parsePath) {
+
     // use space or not after directive
     var sp = (opt_noSpace ? '' : ' ');
+
+    var paramValue = param;
+    if (opt_parsePath) {
+      paramValue = grunt.file.expandFiles(param);
+    }
     if (Array.isArray(param)) {
-      return ' ' + directive + sp + param.join(' ' + directive + sp);
+      if (opt_parsePath){
+        paramValue = [];
+        var item = param.shift();
+        while(item) {
+          paramValue.push(grunt.file.expand(item));
+          item = param.shift();
+        }
+      }
+      return ' ' + directive + sp + paramValue.join(' ' + directive + sp);
     } else if (null === param){
       return ' ' + directive;
     } else {
-      return ' ' + directive + sp + String(param);
+
+      if (opt_parsePath)
+      return ' ' + directive + sp + String(paramValue);
     }
   });
 
@@ -73,12 +92,12 @@ module.exports = function(grunt) {
     var gzipSrc = grunt.helper('gzip', src);
     var gzipSize = gzipSrc.length;
     var compiledSize = src.length;
-    var percent = String((gzipSize / compiledSize).toFixed(2) * 100) + '%';
+    var percent = String('-' + (1 - (gzipSize / compiledSize)).toFixed(2) * 100) + '%';
 
     grunt.log.writeln('Compiled size:\t' + String((compiledSize / 1024).toFixed(2)).green +
       ' kb \t(' + String(compiledSize).green + ' bytes)');
     grunt.log.writeln('GZipped size:\t' + String((gzipSize / 1024).toFixed(2)).green +
-      ' kb \t(' + String(gzipSize).green + ' bytes) -' + percent + ' compressed');
+      ' kb \t(' + String(gzipSize).green + ' bytes) ' + percent);
 
   });
 

@@ -96,7 +96,6 @@ module.exports = function(grunt) {
   });
 
   grunt.registerMultiTask('closureCompiler', 'Google Closure Library compiler', function() {
-    var done = this.async();
     grunt.helper('closureCompiler', this.data, this.async());
   });
 
@@ -126,7 +125,7 @@ function validate(grunt, data)
     grunt.log.error('ERROR'.red + ' :: compiler filepath not valid: ' + compiler.red);
     return false;
   }
-  
+
   //
   // Process output file
   //

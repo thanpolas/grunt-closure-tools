@@ -123,6 +123,8 @@ function validate(grunt, data)
     builder = lib + BUILDER;
   }
 
+  builder = grunt.file.expandFiles(builder).shift();
+
   // ---
   // validate builder existence
   // ---
@@ -163,7 +165,7 @@ function validate(grunt, data)
     root: root
   };
 
-};
+}
 
 
 /**
@@ -180,7 +182,7 @@ function compileCommand(grunt, params, data)
 
   // check for inputs
   if (params.inputs && params.inputs.length) {
-    cmd += grunt.helper('makeParam', params.inputs, '-i');
+    cmd += grunt.helper('makeParam', params.inputs, '-i', false, true);
   }
   // check for namespaces
   if (params.namespaces && params.namespaces.length) {
@@ -188,8 +190,7 @@ function compileCommand(grunt, params, data)
   }
 
   // append root
-  cmd += grunt.helper('makeParam', params.root, '--root=', true);
-
+  cmd += grunt.helper('makeParam', params.root, '--root=', true, true);
   // check type of operation
   var op = data.output_mode || 'list';
 
@@ -222,19 +223,23 @@ function compileCommand(grunt, params, data)
     cmd += ' --output_file=' + output_file;
   }
 
-  // --- 
-  // if compile modestart digging
+  // ---
+  // if compile mode, start digging
   // ---
   if (compile) {
     cmd += ' --compiler_jar=' + data.compiler;
     // dive into all options
     var opts = data.compiler_options;
+    // define options that may contain files that need expanding
+    var expandDirectives = [
+      'externs'
+    ];
     for(var directive in opts) {
       // check for externs option and intercept with grunt file expand
-      if ('externs' == directive) {
+      if (0 <= expandDirectives.indexOf(directive)) {
         opts[directive] = grunt.file.expandFiles(opts[directive]);
       }
-      
+
       // check for type of value and act accordingly
       if (Array.isArray(opts[directive])) {
         // go through all values
@@ -253,4 +258,4 @@ function compileCommand(grunt, params, data)
   }
 
   return cmd;
-};
+}
