@@ -42,6 +42,7 @@ module.exports = function(grunt) {
     if (opt_parsePath) {
       paramValue = grunt.file.expandFiles(param);
     }
+
     if (Array.isArray(param)) {
       if (opt_parsePath){
         paramValue = [];
@@ -55,8 +56,6 @@ module.exports = function(grunt) {
     } else if (null === param){
       return ' ' + directive;
     } else {
-
-      if (opt_parsePath)
       return ' ' + directive + sp + String(paramValue);
     }
   });
@@ -92,7 +91,7 @@ module.exports = function(grunt) {
     var gzipSrc = grunt.helper('gzip', src);
     var gzipSize = gzipSrc.length;
     var compiledSize = src.length;
-    var percent = String('-' + (1 - (gzipSize / compiledSize)).toFixed(2) * 100) + '%';
+    var percent = String('-' + ((1 - (gzipSize / compiledSize)) * 100).toFixed(2) + '%');
 
     grunt.log.writeln('Compiled size:\t' + String((compiledSize / 1024).toFixed(2)).green +
       ' kb \t(' + String(compiledSize).green + ' bytes)');

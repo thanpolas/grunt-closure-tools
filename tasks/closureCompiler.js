@@ -184,13 +184,12 @@ function compileCommand(grunt, params, data)
 
   // check if output file is defined
   if (params.output_file && params.output_file.length) {
+
     grunt.file.mkdir(path.dirname(params.output_file));
 
     if (params.checkModified && path.existsSync(params.output_file)) {
         var docompile = false;
         var out_mtime =fs.lstatSync(params.output_file).mtime;
-
-        console.log('CHECKING modified...');
 
         for(var i = 0; i < js.length; i++) {
             if (fs.lstatSync(js[i]).mtime > out_mtime) {
@@ -221,7 +220,6 @@ function compileCommand(grunt, params, data)
     }
     cmd += grunt.helper('makeParam', opts[directive], '--' + directive);
   }
-
   return cmd;
 }
 
