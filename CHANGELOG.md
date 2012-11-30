@@ -1,5 +1,9 @@
 # Grunt Closure Tools :: Changelog
 
+- **v.0.6.7**, *30 November 2012*
+  - Fixes bug in `makeParam` helper func as mentioned by @alex88 at [#9](https://github.com/thanpolas/grunt-closure-tools/issues/9)
+  - Made percentage calc have a max of 2 decimals
+
 - **v.0.6.6**, *28 November 2012*
   - Compiler: Made the built in 'data checking' feature optional, added the `checkModified` option as per [nicolacity's](https://github.com/nicolacity) suggestion on [issue #8](https://github.com/thanpolas/grunt-closure-tools/issues/8).
 
