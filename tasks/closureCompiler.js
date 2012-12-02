@@ -152,7 +152,8 @@ function validate(grunt, data)
   return {
     compiler: compiler,
     js: js,
-    output_file: output_file
+    output_file: output_file,
+    checkModified: data.checkModified
   };
 
 }
