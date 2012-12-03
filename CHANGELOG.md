@@ -1,5 +1,8 @@
 # Grunt Closure Tools :: Changelog
 
+- **v.0.6.8**, *03 December 2012*
+  - `checkModified` option was being ignored. Fix by [izb](https://github.com/izb) [#10](https://github.com/thanpolas/grunt-closure-tools/issues/10)
+
 - **v.0.6.7**, *30 November 2012*
   - Fixes bug in `makeParam` helper func as mentioned by @alex88 at [#9](https://github.com/thanpolas/grunt-closure-tools/issues/9)
   - Made percentage calc have a max of 2 decimals
