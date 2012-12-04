@@ -181,21 +181,23 @@ closureDepsWriter: {
 
 ## Release History
 
+- **v.0.6.9**, *04 December 2012*
+  - DepsWriter's `closureLibraryPath` and `output_file` paths now parse Grunt's directives.
+
+
 - **v.0.6.8**, *03 December 2012*
   - `checkModified` option was being ignored. Fix by [izb](https://github.com/izb) [#10](https://github.com/thanpolas/grunt-closure-tools/issues/10)
+
 
 - **v.0.6.7**, *30 November 2012*
   - Fixes bug in `makeParam` helper func as mentioned by @alex88 at [#9](https://github.com/thanpolas/grunt-closure-tools/issues/9)
   - Made percentage calc have a max of 2 decimals
 
+
 - **v.0.6.6**, *28 November 2012*
   - Compiler: Made the built in 'data checking' feature optional, added the `checkModified` option as per [nicolacity's](https://github.com/nicolacity) suggestion on [issue #8](https://github.com/thanpolas/grunt-closure-tools/issues/8).
 
-- **v0.6.5**, *27 November 2012*
-  - Builder: `closureLibraryPath`, `inputs`, `root` directives now parse grunt directives.
-  - Compiler: Fixed percentage, now shows how much the compile file gets reduced.
-
-You can view the full release history in the [changelog](https://github.com/thanpolas/grunt-closure-tools/blob/master/CHANGELOG.md)
+Full [changelog](https://github.com/thanpolas/grunt-closure-tools/blob/master/CHANGELOG.md).
 
 ## License
 Copyright (c) 2012 Thanasis Polychronakis

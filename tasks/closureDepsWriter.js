@@ -43,9 +43,9 @@ var gruntConfig = {
       }
     }
   }
-}; 
- 
- 
+};
+
+
 var fs = require('fs');
 
 // path to depswriter from closure lib path
@@ -77,8 +77,6 @@ module.exports = function(grunt) {
 
     // execute the task
     grunt.helper('executeCommand', command, done);
-    
-    console.log('Out');
 
   });
 
@@ -105,6 +103,8 @@ function validate(grunt, data)
     depswriter = lib + DEPSWRITER;
   }
 
+  depswriter = grunt.file.expandFiles(depswriter).shift();
+
   // ---
   // check depswriter existence
   // ---
@@ -125,7 +125,7 @@ function validate(grunt, data)
     depswriter: depswriter
   };
 
-};
+}
 
 
 /**
@@ -159,9 +159,9 @@ function compileCommand(grunt, params, data)
   // check if output file is defined
   // ---
   if (data.output_file && data.output_file.length) {
-    cmd += ' --output_file=' + data.output_file;
+    cmd += ' --output_file=' + grunt.file.expandFiles(data.output_file).shift();
   }
 
   return cmd;
-};
+}
 

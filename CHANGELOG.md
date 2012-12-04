@@ -1,5 +1,8 @@
 # Grunt Closure Tools :: Changelog
 
+- **v.0.6.9**, *04 December 2012*
+  - DepsWriter's `closureLibraryPath` and `output_file` paths now parse Grunt's directives.
+
 - **v.0.6.8**, *03 December 2012*
   - `checkModified` option was being ignored. Fix by [izb](https://github.com/izb) [#10](https://github.com/thanpolas/grunt-closure-tools/issues/10)
 
