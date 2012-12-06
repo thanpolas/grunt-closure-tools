@@ -159,6 +159,7 @@ function compileCommand(grunt, params, data)
   // check if output file is defined
   // ---
   if (data.output_file && data.output_file.length) {
+    grunt.file.write(data.output_file, ''); // Write to the file first in case it doesn't exist
     cmd += ' --output_file=' + grunt.file.expandFiles(data.output_file).shift();
   }
 
