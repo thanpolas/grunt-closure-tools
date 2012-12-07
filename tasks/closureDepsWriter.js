@@ -108,14 +108,7 @@ function validate(grunt, data)
   // ---
   // check depswriter existence
   // ---
-  var fileExists = false;
-  try {
-      if (fs.lstatSync(depswriter).isFile()) {
-        fileExists = true;
-      }
-  }
-  catch (e) {}
-  if (!fileExists) {
+  if (!grunt.helper('fileExists', depswriter)) {
     grunt.log.error('ERROR'.red + ' :: depswriter file/path not valid: ' + depswriter);
     return false;
   }
