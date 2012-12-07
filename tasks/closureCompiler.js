@@ -118,14 +118,7 @@ function validate(grunt, data)
   //
   // check compiler's existence
   //
-  var fileExists = false;
-  try {
-      if (fs.lstatSync(compiler).isFile()) {
-        fileExists = true;
-      }
-  }
-  catch (e) {}
-  if (!fileExists) {
+  if (!grunt.helper('fileExists', compiler)) {
     grunt.log.error('ERROR'.red + ' :: compiler filepath not valid: ' + compiler.red);
     return false;
   }

@@ -100,4 +100,17 @@ module.exports = function(grunt) {
 
   });
 
+  /**
+   * Checks existence of a file (allows symlinks)
+   *
+   * @param {string} filePath path to check
+   */
+  grunt.registerHelper('fileExists', function (filePath) {
+    try {
+      var stat = fs.lstatSync(filePath);
+      if (stat.isFile())
+        return true;
+    } catch (e) {};
+    return false;
+  });
 };

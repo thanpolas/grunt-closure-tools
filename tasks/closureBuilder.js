@@ -128,14 +128,7 @@ function validate(grunt, data)
   // ---
   // validate builder existence
   // ---
-  var fileExists = false;
-  try {
-      if (fs.lstatSync(builder).isFile()) {
-        fileExists = true;
-      }
-  }
-  catch (e) {}
-  if (!fileExists) {
+  if (!grunt.helper('fileExists', builder)) {
     grunt.log.error('ERROR'.red + ' :: builder file/path not valid: ' + builder.red);
     return false;
   }
@@ -197,14 +190,7 @@ function compileCommand(grunt, params, data)
   // see if we have compiler set, will override any operation
   if (data.compile) {
     // we got something, check if file is there...
-    var fileExists = false;
-    try {
-        if (fs.lstatSync(data.compiler).isFile()) {
-          fileExists = true;
-        }
-    }
-    catch (e) {}
-    if (!fileExists) {
+    if (!grunt.helper('fileExists', data.compiler)) {
       grunt.log.error('ERROR'.red + ' :: compiler .jar location not valid: ' + data.compiler.red);
       return false;
     }
