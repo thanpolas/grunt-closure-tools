@@ -108,7 +108,7 @@ module.exports = function(grunt) {
   grunt.registerHelper('fileExists', function (filePath) {
     try {
       var stat = fs.lstatSync(filePath);
-      if (stat.isFile())
+      if (stat.isFile() || stat.isSymbolicLink())
         return true;
     } catch (e) {};
     return false;
