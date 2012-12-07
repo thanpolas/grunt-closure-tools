@@ -104,13 +104,14 @@ module.exports = function(grunt) {
    * Checks existence of a file (allows symlinks)
    *
    * @param {string} filePath path to check
+   * @return {boolean} Wether the file exists.
    */
-  grunt.registerHelper('fileExists', function (filePath) {
+  grunt.registerHelper('fileExists', function fileExists(filePath) {
     try {
       var stat = fs.lstatSync(filePath);
       if (stat.isFile() || stat.isSymbolicLink())
         return true;
-    } catch (e) {};
+    } catch (e) {}
     return false;
   });
 };

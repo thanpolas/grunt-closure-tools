@@ -1,5 +1,8 @@
 # Grunt Closure Tools :: Changelog
 
+- **v0.6.11**, *07 December 2012*
+  - Added support for symlinks in file/path parameters (for compiler, builder, and depswriter), using `stat.isFile() || stat.isSymboliclink()` [#12](https://github.com/thanpolas/grunt-closure-tools/pull/12) (by [jbenet](https://github.com/jbenet)).
+
 - **v0.6.10**, *06 December 2012*
   - `DepsWriter` outputs to a file named `undefined` if configured `output_file` does not exist [#11](https://github.com/thanpolas/grunt-closure-tools/pull/11) (by [scottlangendyk](https://github.com/scottlangendyk)).
 
