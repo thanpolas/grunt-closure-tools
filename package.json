@@ -22,14 +22,13 @@
     }
   ],
   "main": "grunt.js",
-  "bin": "bin/grunt-closure-tools",
   "engines": {
     "node": "*"
   },
   "scripts": {
     "test": "grunt test"
   },
-  "dependencies": {
+  "devDependencies": {
     "grunt": "~0.3.16"
   },
   "keywords": [
