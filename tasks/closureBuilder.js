@@ -145,7 +145,7 @@ function validate(grunt, data)
   }
 
   var root = data.root;
-  if (!root) {
+  if (!root || 0 === root.length) {
     grunt.log.error('ERROR'.red + ' :: ' + 'root'.red + ' property is required');
     return false;
   }

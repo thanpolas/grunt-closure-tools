@@ -46,10 +46,8 @@ module.exports = function(grunt) {
     if (Array.isArray(param)) {
       if (opt_parsePath){
         paramValue = [];
-        var item = param.shift();
-        while(item) {
-          paramValue.push(grunt.file.expand(item));
-          item = param.shift();
+        for(var i = 0, len = param.length; i < len; i++) {
+          paramValue.push(grunt.file.expand(param[i]));
         }
       }
       return ' ' + directive + sp + paramValue.join(' ' + directive + sp);
