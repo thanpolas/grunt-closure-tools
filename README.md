@@ -181,6 +181,10 @@ closureDepsWriter: {
 
 ## Release History
 
+- **v0.6.12**, *12 December 2012*
+  - fixed issue [#14](https://github.com/thanpolas/grunt-closure-tools/issues/14), when closureBuilder run from a grunt watch task, the root param got lost.
+  - Internal file/folder structure works by [scottlangendyk](https://github.com/scottlangendyk)
+
 - **v0.6.11**, *07 December 2012*
   - Added support for symlinks in file/path parameters (for compiler, builder, and depswriter), using `stat.isFile() || stat.isSymboliclink()` [#12](https://github.com/thanpolas/grunt-closure-tools/pull/12) (by [jbenet](https://github.com/jbenet)).
 
@@ -189,9 +193,6 @@ closureDepsWriter: {
 
 - **v0.6.9**, *04 December 2012*
   - DepsWriter's `closureLibraryPath` and `output_file` paths now parse Grunt's directives.
-
-- **v0.6.8**, *03 December 2012*
-  - `checkModified` option was being ignored. Fix by [izb](https://github.com/izb) [#10](https://github.com/thanpolas/grunt-closure-tools/issues/10)
 
 ...read the full [changelog](https://github.com/thanpolas/grunt-closure-tools/blob/master/CHANGELOG.md).
 

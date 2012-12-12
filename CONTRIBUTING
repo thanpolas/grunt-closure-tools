@@ -1,0 +1,4 @@
+
+* Please follow the current documentation and JS style, if you create new methods or alter existing ones be verbose in the docBlocks with what is expected by this method and what it returns.
+
+* Please update the files `CHANGELOG.md` and the `README.md` (section #Release History).
