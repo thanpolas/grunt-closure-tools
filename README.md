@@ -2,7 +2,7 @@
 
 Google Closure Tools for [grunt](https://github.com/cowboy/grunt):
 
-* **[Compiler](https://developers.google.com/closure/compiler/)** Compile your JS code using the powerfull google closure compiler
+* **[Compiler](https://developers.google.com/closure/compiler/)** Compile your JS code using the powerful google closure compiler
 * **[Builder](https://developers.google.com/closure/library/docs/closurebuilder)** Concatenate your JS codebase to a single file, optionally also compile it
 * **[DepsWriter](https://developers.google.com/closure/library/docs/depswriter)** Calculate dependencies of your JS files and generate `deps.js`
 

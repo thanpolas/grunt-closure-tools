@@ -1,4 +1,5 @@
+* In lieu of a formal styleguide, take care to maintain the existing coding style.
 
-* Please follow the current documentation and JS style, if you create new methods or alter existing ones be verbose in the docBlocks with what is expected by this method and what it returns.
+* Be verbose in the docBlocks with what is expected by a method and what is returned.
 
 * Please update the files `CHANGELOG.md` and the `README.md` (section #Release History).
