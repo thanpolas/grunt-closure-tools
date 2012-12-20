@@ -40,7 +40,7 @@ Read more about the closure compiler [here](https://developers.google.com/closur
 ```javascript
 closureCompiler:  {
   // any name that describes your task
-  targerName: {
+  targetName: {
     // [Required] Path to closure compiler
     closureCompiler: 'path/to/closure/compiler.jar',
 
