@@ -11,45 +11,56 @@
  *
  * closureBuilder.js Combines and optionally compiles javascript files
  *
- * Call from grunt as:
+ * Sample grunt Config for Gruntfile:
  */
- var gruntConfig = {
-   closureBuilder:  {
-     // any name that describes your operation
-     targetName: {
-       // [Required] To find the builder executable we need either the path to
-       //    closure library or directly the filepath to the builder:
-       closureLibraryPath: 'path/to/closure-library', // path to closure library
-       builder: 'path/to/closurebuilder.py', // filepath to builder
+var gruntConfig = {
+  closureBuilder:  {
+    options: {
+      // [REQUIRED] To find the builder executable we need either the path to
+      //    closure library or directly the filepath to the builder:
+      closureLibraryPath: 'path/to/closure-library', // path to closure library
 
-       // [Required] One of the two following options are required:
-       inputs: 'string|Array', // input files (can just be the entry point)
-       namespaces: 'string|Array', // namespaces
+      // [OPTIONAL] You can define an alternative path of the builder,
+      // trumps all.
+      builder: 'path/to/closurebuilder.py',
 
-       // [Optional] paths to be traversed to build the dependencies
-       root: 'string|Array',
+      // [OPTIONAL] The location of the compiler.jar
+      // This is required if you set the option "compile" to true.
+      compiler: 'path/to/compiler.jar'
+    },
 
-       // [Optional] if not set, will output to stdout
-       output_file: '',
+    // any name that describes your operation
+    targetName: {
 
-       // [Optional] output_mode can be 'list', 'script' or 'compiled'.
-       //    If compile is set to true, 'compiled' mode is enforced
-       output_mode: '',
+      // [REQUIRED] One of the two following options is required:
+      inputs: 'string|Array', // input files (can just be the entry point)
+      namespaces: 'string|Array', // namespaces
 
-       // [Optional] if we want builder to also compile
-       compile: false, // boolean
-       compiler: '', // the location of the compiler.jar
-       compiler_options: {
-         /**
-          * Go wild here...
-          * any key will be used as an option for the compiler
-          * value can be a string or an array
-          * If no value is required use null
-          */
-       }
-     }
-   }
- };
+      // [OPTIONAL] paths to be traversed to build the dependencies
+      root: 'string|Array',
+
+      // [OPTIONAL] if not set, will output to stdout
+      dst: '',
+
+      // [OPTIONAL] output_mode can be 'list', 'script' or 'compiled'.
+      //    If compile is set to true, 'compiled' mode is enforced
+      output_mode: '',
+
+      // [OPTIONAL] if we want builder to perform compile
+      compile: false, // boolean
+
+
+      compiler_options: {
+      /**
+      * Go wild here...
+      * any key will be used as an option for the compiler
+      * value can be a string or an array
+      * If no value is required use null
+      */
+      }
+    }
+  }
+};
 
 
 
@@ -66,14 +77,17 @@ var output_file = false;
 module.exports = function(grunt) {
   grunt.registerMultiTask('closureBuilder', 'Google Closure Library builder', function closureBuild() {
 
-    var data = this.data;
+    var options = this.options({
+
+    });
+
     var done = this.async();
 
     //
     // Validations
     // - Check required parameters
     //
-    var params = validate(grunt, data);
+    var params = validate(grunt, options);
     if (false === params) {
       return false;
     }
@@ -81,7 +95,7 @@ module.exports = function(grunt) {
     //
     // Prepare and compile the command string we will execute
     //
-    var command = compileCommand(grunt, params, data);
+    var command = compileCommand(grunt, params, options);
 
     if (false === command) {
       return false;
@@ -107,14 +121,14 @@ module.exports = function(grunt) {
  *
  * @return {boolean|Object} false if error
  */
-function validate(grunt, data)
+function validate(grunt, options)
 {
   // check for closure lib path
-  var lib = data.closureLibraryPath;
+  var lib = options.closureLibraryPath;
   var builder;
   if (!lib) {
     // check for direct assignment of builder script
-    builder = data.builder;
+    builder = options.builder;
     if (!builder) {
       grunt.log.error('ERROR'.red + ' :: ' + 'closureLibraryPath'.red + ' or ' + 'builder'.red + ' properties are required');
       return false;
@@ -136,15 +150,15 @@ function validate(grunt, data)
   // ---
   // Check for inputs or paths
   // ---
-  var inputs = grunt.file.expandFiles(data.inputs);
-  var namespaces = data.namespaces;
+  var inputs = grunt.file.expandFiles(options.inputs);
+  var namespaces = options.namespaces;
   if (0 === inputs.length && !namespaces) {
     grunt.log.error('ERROR'.red + ' :: ' + 'inputs'.red + ' or ' + 'namespaces'.red +
     ' properties are required');
     return false;
   }
 
-  var root = data.root;
+  var root = options.root;
   if (!root || 0 === root.length) {
     grunt.log.error('ERROR'.red + ' :: ' + 'root'.red + ' property is required');
     return false;
@@ -166,10 +180,10 @@ function validate(grunt, data)
  *
  * @param {grunt} grunt
  * @param {Object} params
- * @param {Object} data
+ * @param {Object} options
  * @return {string|boolean} boolean false if we failed, command string if all ok
  */
-function compileCommand(grunt, params, data)
+function compileCommand(grunt, params, options)
 {
   var cmd = params.builder + ' ';
 
@@ -185,13 +199,13 @@ function compileCommand(grunt, params, data)
   // append root
   cmd += grunt.helper('makeParam', params.root, '--root=', true, true);
   // check type of operation
-  var op = data.output_mode || 'list';
+  var op = options.output_mode || 'list';
 
   // see if we have compiler set, will override any operation
-  if (data.compile) {
+  if (options.compile) {
     // we got something, check if file is there...
-    if (!grunt.helper('fileExists', data.compiler)) {
-      grunt.log.error('ERROR'.red + ' :: compiler .jar location not valid: ' + data.compiler.red);
+    if (!grunt.helper('fileExists', options.compiler)) {
+      grunt.log.error('ERROR'.red + ' :: compiler .jar location not valid: ' + options.compiler.red);
       return false;
     }
 
@@ -204,8 +218,8 @@ function compileCommand(grunt, params, data)
   cmd += ' -o ' + op;
 
   // check if output file is defined
-  if (data.output_file && data.output_file.length) {
-    output_file = grunt.template.process(data.output_file);
+  if (options.output_file && options.output_file.length) {
+    output_file = grunt.template.process(options.output_file);
     cmd += ' --output_file=' + output_file;
   }
 
@@ -213,9 +227,9 @@ function compileCommand(grunt, params, data)
   // if compile mode, start digging
   // ---
   if (compile) {
-    cmd += ' --compiler_jar=' + data.compiler;
+    cmd += ' --compiler_jar=' + options.compiler;
     // dive into all options
-    var opts = data.compiler_options;
+    var opts = options.compiler_options;
     // define options that may contain files that need expanding
     var expandDirectives = [
       'externs'

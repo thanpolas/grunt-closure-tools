@@ -21,6 +21,8 @@ grunt.loadNpmTasks('grunt-closure-tools');
 
 #### Grunt 0.3.x compatibility
 
+[**Migration Guide** from 0.3.x grunt config to 0.4.x](docs/changes_from_0.3.x_to_0.4.x.md)
+
 To get a grunt 0.3.x. compatible version please install with:
 ```shell
 npm install grunt-closure-tools@0.6.13
