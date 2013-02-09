@@ -6,14 +6,6 @@ Google Closure Tools for [grunt](https://github.com/gruntjs/grunt):
 * **[Builder](https://developers.google.com/closure/library/docs/closurebuilder)** Concatenate your JS codebase to a single file, optionally also compile it
 * **[DepsWriter](https://developers.google.com/closure/library/docs/depswriter)** Calculate dependencies of your JS files and generate `deps.js`
 
-
-## Warning - Unmaintained Version
-
-This is the last version that is compatible with Grunt 0.3.x
-
-From here on all new development will happen for the 0.4.x grunt version.
-
-
 ## Getting Started
 Install the module with: `npm install grunt-closure-tools`
 
@@ -26,6 +18,15 @@ Then register the task by adding the following line to your `grunt.js`:
 ```javascript
 grunt.loadNpmTasks('grunt-closure-tools');
 ```
+
+#### Grunt 0.3.x compatibility
+
+To get a grunt 0.3.x. compatible version please install with:
+```shell
+npm install grunt-closure-tools@0.6.13
+```
+
+The Grunt 0.3.x repository can be found frozen [in this branch](https://github.com/thanpolas/grunt-closure-tools/tree/grunt-0.3.x-STABLE).
 
 ## Documentation
 
