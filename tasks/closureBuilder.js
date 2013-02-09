@@ -49,14 +49,13 @@ var gruntConfig = {
       // [OPTIONAL] if we want builder to perform compile
       compile: false, // boolean
 
-
       compiler_options: {
-      /**
-      * Go wild here...
-      * any key will be used as an option for the compiler
-      * value can be a string or an array
-      * If no value is required use null
-      */
+        /**
+        * Go wild here...
+        * any key will be used as an option for the compiler
+        * value can be a string or an array
+        * If no value is required use null
+        */
       }
     }
   }
@@ -74,6 +73,7 @@ var compile = false;
 
 // if we have an output file, we also set it to this var
 var output_file = false;
+
 module.exports = function(grunt) {
   grunt.registerMultiTask('closureBuilder', 'Google Closure Library builder', function closureBuild() {
 
@@ -125,6 +125,7 @@ function validate(grunt, options)
 {
   // check for closure lib path
   var lib = options.closureLibraryPath;
+
   var builder;
   if (!lib) {
     // check for direct assignment of builder script
