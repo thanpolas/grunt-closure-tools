@@ -1,34 +1,87 @@
+/*jshint camelcase:false */
+/*
+ * Grunt Closure Tools
+ * https://github.com/thanpolas/grunt-closure-tools
+ *
+ * Copyright (c) 2013 Thanasis Polychronakis
+ * Licensed under the MIT license.
+ */
+
+
+var closureTools = require('./tasks/closureTools');
+
+
 module.exports = function(grunt) {
+
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
+  // initialize the tasks manually.
+  closureTools(grunt);
 
   // Project configuration.
   grunt.initConfig({
+
     closureDepsWriter: {
-      deppy: {
+      options: {
         closureLibraryPath: 'closure-library',
-        output_file: 'lib/deps.js',
-        options: {
-          root_with_prefix: ['"lib ../../../lib"']
-        }
+        root: 'test/todoApp/'
       },
       todoApp: {
+        //src: 'test/todoApp/',
+        dest: 'test/todoApp/deps.js'
+      }
+    },
+   closureBuilder:  {
+      options: {
         closureLibraryPath: 'closure-library',
-        output_file: 'test/todoApp/deps.js',
+
+        // This is required if you set the option "compile" to true.
+        compilerFile:           'build/closure_compiler/compiler.jar',
+
+        // [REQUIRED] One of the two following options is required:
+        inputs:             ['test/todoApp/js/app.js'],
+        output_mode:        'list',
+
+        // [OPTIONAL] if we want builder to perform compile
+        compile:            false // boolean
+      },
+
+      // any name that describes your operation
+      todoApp: {
+        src: ['test/todoApp/', 'closure-library']
+      },
+
+      readyjs: {
         options: {
-          root_with_prefix: ['"test/todoApp/ ./"']
-        }
+          inputs: ['test/ready.js/lib/ready.export.js'],
+          namespaces: ['ss.ready', 'ss.ready.compiled'],
+          compile: true,
+          compilerOpts: {
+            compilation_level: 'ADVANCED_OPTIMIZATIONS',
+            define: ['\'goog.DEBUG=false\'', '\'ss.STANDALONE=true\''],
+            externs: 'test/ready.js/build/node.extern.js',
+            warning_level: 'verbose',
+            summary_detail_level: 3,
+            output_wrapper: '(function(){%output%}).call(this);'
+          }
+        },
+        src: ['test/ready.js/lib/', 'closure-library'],
+        dest: 'temp/ready.js'
       }
 
     },
+
+
 
     watch: {
-      autoBuild: {
-        files: 'lib/**/*.js',
-        tasks: ['build', 'test']
+      builder: {
+        files: ['tasks/*.js'],
+        tasks: ['closureBuilder:readyjs']
       },
-      gruntFile: {
-        files: ['Gruntfile.js', 'tasks/*.js'],
-        tasks: ['deppyRun']
+      depsWriter: {
+        files: ['tasks/*.js'],
+        tasks: ['closureDepsWriter:todoApp']
       }
-    },
+    }
   });
 };

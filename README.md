@@ -50,24 +50,29 @@ Read more about the closure compiler [here](https://developers.google.com/closur
 #### Sample Config for The Closure Compiler
 ```javascript
 closureCompiler:  {
+
+  options: {
+    // [REQUIRED] Path to closure compiler
+    compilerFile: 'path/to/closure/compiler.jar'
+
+  },
+
   // any name that describes your task
   targetName: {
-    // [Required] Path to closure compiler
-    closureCompiler: 'path/to/closure/compiler.jar',
 
-    // [Required] Target files to compile. Can be a string, an array of strings
+    // [OPTIONAL] Target files to compile. Can be a string, an array of strings
     // or grunt file syntax (<config:...>, *)
-    js: 'path/to/file.js',
+    src: 'path/to/file.js',
 
-    // [Optional] set an output file
-    output_file: 'path/to/compiled_file.js',
+    // [OPTIONAL] set an output file
+    dest: 'path/to/compiled_file.js',
 
-    // [Optional] set to true if you want to check if files were modified
+    // [OPTIONAL] set to true if you want to check if files were modified
     // before starting compilation (can save some time in large sourcebases)
     checkModified: true,
 
-    // [Optional] Set Closure Compiler Directives here
-    options: {
+    // [OPTIONAL] Set Closure Compiler Directives here
+    compilerOpts: {
       /**
        * Keys will be used as directives for the compiler
        * values can be strings or arrays.
@@ -110,38 +115,50 @@ Read more about the closure builder in [this link](https://developers.google.com
 
 ```javascript
 closureBuilder:  {
-  // any name that describes your operation
-  targetName: {
-    // [Required] To find the builder executable we need either the path to
+  options: {
+    // [REQUIRED] To find the builder executable we need either the path to
     //    closure library or directly the filepath to the builder:
     closureLibraryPath: 'path/to/closure-library', // path to closure library
-    builder: 'path/to/closurebuilder.py', // filepath to builder
 
-    // [Required] One of the two following options are required:
+    // [REQUIRED] One of the two following options is required:
     inputs: 'string|Array', // input files (can just be the entry point)
     namespaces: 'string|Array', // namespaces
 
-    // [Optional] paths to be traversed to build the dependencies
-    root: 'string|Array',
+    // [OPTIONAL] You can define an alternative path of the builder.
+    //    If set it trumps 'closureLibraryPath' which will not be required.
+    builder: 'path/to/closurebuilder.py',
 
-    // [Optional] if not set, will output to stdout
-    output_file: '',
+    // [OPTIONAL] The location of the compiler.jar
+    // This is required if you set the option "compile" to true.
+    compilerFile: 'path/to/compiler.jar',
 
-    // [Optional] output_mode can be 'list', 'script' or 'compiled'.
-    //    If compile is set to true, 'compiled' mode is enforced
+    // [OPTIONAL] output_mode can be 'list', 'script' or 'compiled'.
+    //    If compile is set to true, 'compiled' mode is enforced.
+    //    Default is 'script'.
     output_mode: '',
 
-    // [Optional] if we want builder to also compile
+    // [OPTIONAL] if we want builder to perform compile
     compile: false, // boolean
-    compiler: '', // the location of the compiler.jar
-    compiler_options: {
+
+    compilerOpts: {
       /**
-       * Go wild here...
-       * any key will be used as a directive for the compiler
-       * value can be a string or an array
-       * If no value is required use null
-       */
+      * Go wild here...
+      * any key will be used as an option for the compiler
+      * value can be a string or an array
+      * If no value is required use null
+      */
     }
+
+  },
+
+  // any name that describes your operation
+  targetName: {
+
+    // [REQUIRED] paths to be traversed to build the dependencies
+    src: 'string|Array',
+
+    // [OPTIONAL] if not set, will output to stdout
+    dest: '',
   }
 }
 ```
@@ -160,32 +177,38 @@ Read more about depswriter [here](https://developers.google.com/closure/library/
 
 ```javascript
 closureDepsWriter: {
-   // any name that describes your operation
-  targetName: {
-    // [Required] To find the depswriter executable we need either the path to
-    //    closure library or directly the filepath to the depswriter:
-    closureLibraryPath: 'path/to/closure-library', // path to closure library
+  options: {
+    // [REQUIRED] To find the depswriter executable we need either the path to
+    //    closure library or the depswriter executable full path:
+    closureLibraryPath: 'path/to/closure-library',
+
+    // [OPTIONAL] Define the full path to the executable directly.
+    //    If set it trumps 'closureLibraryPath' which will not be required.
     depswriter: 'path/to/depswriter.py', // filepath to depswriter
 
-    // [Optional] Set file targets. Can be a string, array or
+    // [OPTIONAL] Root directory to scan. Can be string or array
+    root: ['source/ss', 'source/closure-library', 'source/showcase'],
+
+    // [OPTIONAL] Root with prefix takes a pair of strings separated with a space,
+    //    so proper way to use it is to suround with quotes.
+    //    can be a string or array
+    root_with_prefix: '"source/ss ../../ss"',
+
+    // [OPTIONAL] string or array
+    path_with_depspath: ''
+
+
+  },
+   // any name that describes your operation
+  targetName: {
+
+    // [OPTIONAL] Set file targets. Can be a string, array or
     //    grunt file syntax (<config:...> or *)
-    files: 'path/to/awesome.js',
+    src: 'path/to/awesome.js',
 
-    // [Optional] If not set, will output to stdout
-    output_file: '',
+    // [OPTIONAL] If not set, will output to stdout
+    dest: '',
 
-    options: {
-      // [Optional] Root directory to scan. Can be string or array
-      root: ['source/ss', 'source/closure-library', 'source/showcase'],
-
-      // [Optional] Root with prefix takes a pair of strings separated with a space,
-      //    so proper way to use it is to suround with quotes.
-      //    can be a string or array
-      root_with_prefix: '"source/ss ../../ss"',
-
-      // [Optional] string or array
-      path_with_depspath: ''
-    }
   }
 }
 ```
