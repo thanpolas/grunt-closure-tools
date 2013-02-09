@@ -62,7 +62,7 @@ closureBuilder:  {
     src: 'string|Array',
 
     // [OPTIONAL] if not set, will output to stdout
-    dest: '',
+    dest: ''
   }
 }
 ```
@@ -84,19 +84,7 @@ closureCompiler:  {
 
   options: {
     // [REQUIRED] Path to closure compiler
-    compilerFile: 'path/to/closure/compiler.jar'
-
-  },
-
-  // any name that describes your task
-  targetName: {
-
-    // [OPTIONAL] Target files to compile. Can be a string, an array of strings
-    // or grunt file syntax (<config:...>, *)
-    src: 'path/to/file.js',
-
-    // [OPTIONAL] set an output file
-    dest: 'path/to/compiled_file.js',
+    compilerFile: 'path/to/closure/compiler.jar',
 
     // [OPTIONAL] set to true if you want to check if files were modified
     // before starting compilation (can save some time in large sourcebases)
@@ -122,6 +110,18 @@ closureCompiler:  {
        summary_detail_level: 3,
        output_wrapper: '(function(){%output%}).call(this);'
     }
+
+  },
+
+  // any name that describes your task
+  targetName: {
+
+    // [OPTIONAL] Target files to compile. Can be a string, an array of strings
+    // or grunt file syntax (<config:...>, *)
+    src: 'path/to/file.js',
+
+    // [OPTIONAL] set an output file
+    dest: 'path/to/compiled_file.js'
   }
 }
 ```
