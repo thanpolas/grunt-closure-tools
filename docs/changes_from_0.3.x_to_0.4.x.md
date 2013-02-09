@@ -168,7 +168,7 @@ closureDepsWriter: {
     src: 'path/to/awesome.js',
 
     // [OPTIONAL] If not set, will output to stdout
-    dest: '',
+    dest: ''
 
   }
 }
