@@ -7,22 +7,22 @@
   "author": {
     "name": "Thanasis Polychronakis",
     "email": "thanpolas@gmail.com",
-    "url": "http://twitter.com/thanpolas"
+    "url": "http://thanpol.as"
   },
   "repository": {"type": "git", "url": "https://github.com/thanpolas/grunt-closure-tools.git"},
   "bugs": {"url": "https://github.com/thanpolas/grunt-closure-tools/issues"},
-  "licenses": [{"type": "MIT", "url": "https://github.com/thanpolas/deppy/blob/master/LICENSE-MIT"}],
+  "licenses": [{"type": "MIT", "url": "https://github.com/thanpolas/grunt-closure-tools/blob/master/LICENSE-MIT"}],
 
-  "main": "grunt.js",
-  "engines": {
-    "node": ">=0.8.0"
-  },
-  "scripts": {
-    "test": "grunt test"
-  },
+  "main": "tasks/closureTools.js",
 
+  "engines": {"node": ">=0.8.0"},
+  "scripts": {},
+  "dependencies": {
+    "grunt": "0.4.0rc7"
+  }
   "devDependencies": {
-    "grunt": "~0.3.16"
+    "grunt-contrib-watch": "0.2.0rc7",
+    "grunt-contrib-nodeunit": "0.1.2rc6",
   },
   "keywords": [
     "gruntplugin",

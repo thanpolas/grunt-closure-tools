@@ -10,7 +10,7 @@ Google Closure Tools for [grunt](https://github.com/gruntjs/grunt):
 Install the module with: `npm install grunt-closure-tools`
 
 ```shell
-npm install grunt-closure-tools
+npm install grunt-closure-tools --save-dev
 ```
 
 Then register the task by adding the following line to your `grunt.js`:
@@ -21,9 +21,11 @@ grunt.loadNpmTasks('grunt-closure-tools');
 
 #### Grunt 0.3.x compatibility
 
+[**Migration Guide** from 0.3.x grunt config to 0.4.x](docs/changes_from_0.3.x_to_0.4.x.md)
+
 To get a grunt 0.3.x. compatible version please install with:
 ```shell
-npm install grunt-closure-tools@0.6.13
+npm install grunt-closure-tools@0.6.13 --save-dev
 ```
 
 The Grunt 0.3.x repository can be found frozen [in this branch](https://github.com/thanpolas/grunt-closure-tools/tree/grunt-0.3.x-STABLE).
@@ -36,8 +38,8 @@ All three tasks (compiler, builder and depswriter) are [multitasks](https://gith
 
 The Closure Compiler task has two requirements.
 
-  1. **`closureCompiler`** The location of the compiler. Find the latest compiler.jar file [here](http://closure-compiler.googlecode.com/files/compiler-latest.zip).
-  2. **`js`** The js files you want to compile.
+  1. **`compilerFile`** The location of the compiler. Find the latest compiler.jar file [here](http://closure-compiler.googlecode.com/files/compiler-latest.zip).
+  2. **`src`** The js files you want to compile.
 
 You can fully configure how the compiler will behave, by setting directives in the `options`. Every key will be used as a directive for the compiler.
 
@@ -48,24 +50,17 @@ Read more about the closure compiler [here](https://developers.google.com/closur
 #### Sample Config for The Closure Compiler
 ```javascript
 closureCompiler:  {
-  // any name that describes your task
-  targetName: {
-    // [Required] Path to closure compiler
-    closureCompiler: 'path/to/closure/compiler.jar',
 
-    // [Required] Target files to compile. Can be a string, an array of strings
-    // or grunt file syntax (<config:...>, *)
-    js: 'path/to/file.js',
+  options: {
+    // [REQUIRED] Path to closure compiler
+    compilerFile: 'path/to/closure/compiler.jar',
 
-    // [Optional] set an output file
-    output_file: 'path/to/compiled_file.js',
-
-    // [Optional] set to true if you want to check if files were modified
+    // [OPTIONAL] set to true if you want to check if files were modified
     // before starting compilation (can save some time in large sourcebases)
     checkModified: true,
 
-    // [Optional] Set Closure Compiler Directives here
-    options: {
+    // [OPTIONAL] Set Closure Compiler Directives here
+    compilerOpts: {
       /**
        * Keys will be used as directives for the compiler
        * values can be strings or arrays.
@@ -84,12 +79,24 @@ closureCompiler:  {
        summary_detail_level: 3,
        output_wrapper: '(function(){%output%}).call(this);'
     }
+
+  },
+
+  // any name that describes your task
+  targetName: {
+
+    // [OPTIONAL] Target files to compile. Can be a string, an array of strings
+    // or grunt file syntax (<config:...>, *)
+    src: 'path/to/file.js',
+
+    // [OPTIONAL] set an output file
+    dest: 'path/to/compiled_file.js'
   }
 }
 ```
 ### Closure Builder
 
-The Closure Builder task has 2 required directives:
+The Closure Builder task has 3 required directives:
 
   1. A way to find the `closurebuilder.py` file. One of the following two directives are required:
     * **`closureLibraryPath`** A path to the Google Closure Library. From there we can infer the location of the closurebuilder.py file
@@ -97,6 +104,8 @@ The Closure Builder task has 2 required directives:
   2. An input method must be defined. One of the following two directives is required:
     * **`inputs`** String, array or grunt file syntax to define build targets
     * **`namespaces`** String or array to define namespaces to build
+  3. The root targets of the closureBuilder. These are defined in the:
+    * **`src`** option of each target. Can be string or array.
 
 The builder has the ability to compile *on-the-fly* the built files. To enable this option you need to set the option `compile` to boolean `true` and then set the location of the `compiler.jar` file via the `compiler` directive.
 
@@ -108,38 +117,49 @@ Read more about the closure builder in [this link](https://developers.google.com
 
 ```javascript
 closureBuilder:  {
-  // any name that describes your operation
-  targetName: {
-    // [Required] To find the builder executable we need either the path to
+  options: {
+    // [REQUIRED] To find the builder executable we need either the path to
     //    closure library or directly the filepath to the builder:
     closureLibraryPath: 'path/to/closure-library', // path to closure library
-    builder: 'path/to/closurebuilder.py', // filepath to builder
+    // [OPTIONAL] You can define an alternative path of the builder.
+    //    If set it trumps 'closureLibraryPath' which will not be required.
+    builder: 'path/to/closurebuilder.py',
 
-    // [Required] One of the two following options are required:
+    // [REQUIRED] One of the two following options is required:
     inputs: 'string|Array', // input files (can just be the entry point)
     namespaces: 'string|Array', // namespaces
 
-    // [Optional] paths to be traversed to build the dependencies
-    root: 'string|Array',
+    // [OPTIONAL] The location of the compiler.jar
+    // This is required if you set the option "compile" to true.
+    compilerFile: 'path/to/compiler.jar',
 
-    // [Optional] if not set, will output to stdout
-    output_file: '',
-
-    // [Optional] output_mode can be 'list', 'script' or 'compiled'.
-    //    If compile is set to true, 'compiled' mode is enforced
+    // [OPTIONAL] output_mode can be 'list', 'script' or 'compiled'.
+    //    If compile is set to true, 'compiled' mode is enforced.
+    //    Default is 'script'.
     output_mode: '',
 
-    // [Optional] if we want builder to also compile
+    // [OPTIONAL] if we want builder to perform compile
     compile: false, // boolean
-    compiler: '', // the location of the compiler.jar
-    compiler_options: {
+
+    compilerOpts: {
       /**
-       * Go wild here...
-       * any key will be used as a directive for the compiler
-       * value can be a string or an array
-       * If no value is required use null
-       */
+      * Go wild here...
+      * any key will be used as an option for the compiler
+      * value can be a string or an array
+      * If no value is required use null
+      */
     }
+
+  },
+
+  // any name that describes your operation
+  targetName: {
+
+    // [REQUIRED] paths to be traversed to build the dependencies
+    src: 'string|Array',
+
+    // [OPTIONAL] if not set, will output to stdout
+    dest: ''
   }
 }
 ```
@@ -158,37 +178,53 @@ Read more about depswriter [here](https://developers.google.com/closure/library/
 
 ```javascript
 closureDepsWriter: {
-   // any name that describes your operation
-  targetName: {
-    // [Required] To find the depswriter executable we need either the path to
-    //    closure library or directly the filepath to the depswriter:
-    closureLibraryPath: 'path/to/closure-library', // path to closure library
+  options: {
+    // [REQUIRED] To find the depswriter executable we need either the path to
+    //    closure library or the depswriter executable full path:
+    closureLibraryPath: 'path/to/closure-library',
+
+    // [OPTIONAL] Define the full path to the executable directly.
+    //    If set it trumps 'closureLibraryPath' which will not be required.
     depswriter: 'path/to/depswriter.py', // filepath to depswriter
 
-    // [Optional] Set file targets. Can be a string, array or
+    // [OPTIONAL] Root directory to scan. Can be string or array
+    root: ['source/ss', 'source/closure-library', 'source/showcase'],
+
+    // [OPTIONAL] Root with prefix takes a pair of strings separated with a space,
+    //    so proper way to use it is to suround with quotes.
+    //    can be a string or array
+    root_with_prefix: '"source/ss ../../ss"',
+
+    // [OPTIONAL] string or array
+    path_with_depspath: ''
+
+
+  },
+   // any name that describes your operation
+  targetName: {
+
+    // [OPTIONAL] Set file targets. Can be a string, array or
     //    grunt file syntax (<config:...> or *)
-    files: 'path/to/awesome.js',
+    src: 'path/to/awesome.js',
 
-    // [Optional] If not set, will output to stdout
-    output_file: '',
+    // [OPTIONAL] If not set, will output to stdout
+    dest: ''
 
-    options: {
-      // [Optional] Root directory to scan. Can be string or array
-      root: ['source/ss', 'source/closure-library', 'source/showcase'],
-
-      // [Optional] Root with prefix takes a pair of strings separated with a space,
-      //    so proper way to use it is to suround with quotes.
-      //    can be a string or array
-      root_with_prefix: '"source/ss ../../ss"',
-
-      // [Optional] string or array
-      path_with_depspath: ''
-    }
   }
 }
 ```
 
 ## Release History
+
+### Grunt 0.4.x Versions
+
+- **v0.7.0**, *10 February 2013*
+  - Complete refactoring. New API. Grunt 0.4.x compatible.
+
+### Grunt 0.3.x Versions
+
+- **v0.6.13**, *09 February 2013*
+  - Plain version bump. Last version to support Grunt 0.3.x
 
 - **v0.6.12**, *12 December 2012*
   - fixed issue [#14](https://github.com/thanpolas/grunt-closure-tools/issues/14), when closureBuilder run from a grunt watch task, the root param got lost.
@@ -197,16 +233,10 @@ closureDepsWriter: {
 - **v0.6.11**, *07 December 2012*
   - Added support for symlinks in file/path parameters (for compiler, builder, and depswriter), using `stat.isFile() || stat.isSymboliclink()` [#12](https://github.com/thanpolas/grunt-closure-tools/pull/12) (by [jbenet](https://github.com/jbenet)).
 
-- **v0.6.10**, *06 December 2012*
-  - `DepsWriter` outputs to a file named `undefined` if configured `output_file` does not exist [#11](https://github.com/thanpolas/grunt-closure-tools/pull/11) (by [scottlangendyk](https://github.com/scottlangendyk)).
-
-- **v0.6.9**, *04 December 2012*
-  - DepsWriter's `closureLibraryPath` and `output_file` paths now parse Grunt's directives.
-
-...read the full [changelog](https://github.com/thanpolas/grunt-closure-tools/blob/master/CHANGELOG.md).
+...read the full [changelog](CHANGELOG.md).
 
 ## License
-Copyright (c) 2012 Thanasis Polychronakis
-Licensed under the [APACHE2 license](http://www.apache.org/licenses/LICENSE-2.0).
+Copyright (c) 2013 Thanasis Polychronakis
+Licensed under the [MIT license](LICENSE-MIT).
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/5eb066586b681b39b82e56719f75faaa "githalytics.com")](http://githalytics.com/thanpolas/grunt-closure-tools)
