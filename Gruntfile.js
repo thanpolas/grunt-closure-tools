@@ -14,12 +14,18 @@ var closureTools = require('./tasks/closureTools');
 module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
   // initialize the tasks manually.
   closureTools(grunt);
 
   // Project configuration.
   grunt.initConfig({
+
+    nodeunit: {
+      all: ['test/{builder,compiler,depsWriter}/**/*.js']
+    },
+
 
     closureDepsWriter: {
       options: {
@@ -71,9 +77,14 @@ module.exports = function(grunt) {
 
     },
 
-
-
     watch: {
+      test: {
+        files: [
+          'test/{builder,compiler,depsWriter}/**/*.js',
+          'tasks/**/*.js'
+        ],
+        tasks: ['test']
+      },
       builder: {
         files: ['tasks/*.js'],
         tasks: ['closureBuilder:readyjs']
@@ -84,4 +95,8 @@ module.exports = function(grunt) {
       }
     }
   });
+
+  // "npm test" runs these tasks
+  grunt.registerTask('test', ['nodeunit']);
+
 };

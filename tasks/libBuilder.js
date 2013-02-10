@@ -92,7 +92,6 @@ builder.createCommand = function createCommand ( options, fileObj ) {
 
   var cmd = builder + ' ';
 
-
   // check for inputs
   var inputs = options.inputs;
   if (inputs && inputs.length) {
@@ -103,7 +102,8 @@ builder.createCommand = function createCommand ( options, fileObj ) {
     cmd += cHelpers.makeParam( options.namespaces, '-n' );
   }
   // append root
-  cmd += cHelpers.makeParam( gruntMod.file.expand( fileObj.src ), '--root=', true, true);
+  var allRoots = gruntMod.file.expand( fileObj.src );
+  cmd += cHelpers.makeParam( allRoots, '--root=', true, true);
 
   // check type of operation
   var op = options.output_mode || 'script';
@@ -155,7 +155,7 @@ builder.createCommand = function createCommand ( options, fileObj ) {
       if ( Array.isArray( compileOpts[directive] ) ) {
 
         // go through all values
-        for (var i = 0, l = compileOpts[directive].length; i < l; i++) {
+        for (var i = 0, len = compileOpts[directive].length; i < len; i++) {
           cmd += ' --compiler_flags="--' + directive + '=' + compileOpts[directive][i] + '"';
         }
       } else if (null === compileOpts[directive]) {
