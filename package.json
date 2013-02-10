@@ -16,13 +16,12 @@
   "main": "tasks/closureTools.js",
 
   "engines": {"node": ">=0.8.0"},
-  "scripts": {},
   "dependencies": {
     "grunt": "0.4.0rc7"
-  }
+  },
   "devDependencies": {
     "grunt-contrib-watch": "0.2.0rc7",
-    "grunt-contrib-nodeunit": "0.1.2rc6",
+    "grunt-contrib-nodeunit": "0.1.2rc6"
   },
   "keywords": [
     "gruntplugin",
