@@ -18,7 +18,7 @@ var compiler = {};
 compiler.validate = function validate( options )
 {
   // check for closure compiler file
-  var compilerJar = options.closureCompiler;
+  var compilerJar = options.compilerFile;
 
   //
   // check compilerJar's existence
@@ -50,7 +50,7 @@ compiler.validate = function validate( options )
  */
 compiler.compileCommand = function compileCommand( options, fileObj ) {
 
-  var cmd = 'java -jar ' + options.closureCompiler + ' ';
+  var cmd = 'java -jar ' + options.compilerFile + ' ';
 
   //
   // check for js files

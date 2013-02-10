@@ -104,6 +104,7 @@ builder.createCommand = function createCommand ( options, fileObj ) {
   }
   // append root
   cmd += cHelpers.makeParam( gruntMod.file.expand( fileObj.src ), '--root=', true, true);
+
   // check type of operation
   var op = options.output_mode || 'script';
 

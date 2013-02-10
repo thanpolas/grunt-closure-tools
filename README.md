@@ -10,7 +10,7 @@ Google Closure Tools for [grunt](https://github.com/gruntjs/grunt):
 Install the module with: `npm install grunt-closure-tools`
 
 ```shell
-npm install grunt-closure-tools
+npm install grunt-closure-tools --save-dev
 ```
 
 Then register the task by adding the following line to your `grunt.js`:
@@ -25,7 +25,7 @@ grunt.loadNpmTasks('grunt-closure-tools');
 
 To get a grunt 0.3.x. compatible version please install with:
 ```shell
-npm install grunt-closure-tools@0.6.13
+npm install grunt-closure-tools@0.6.13 --save-dev
 ```
 
 The Grunt 0.3.x repository can be found frozen [in this branch](https://github.com/thanpolas/grunt-closure-tools/tree/grunt-0.3.x-STABLE).
@@ -38,8 +38,8 @@ All three tasks (compiler, builder and depswriter) are [multitasks](https://gith
 
 The Closure Compiler task has two requirements.
 
-  1. **`closureCompiler`** The location of the compiler. Find the latest compiler.jar file [here](http://closure-compiler.googlecode.com/files/compiler-latest.zip).
-  2. **`js`** The js files you want to compile.
+  1. **`compilerFile`** The location of the compiler. Find the latest compiler.jar file [here](http://closure-compiler.googlecode.com/files/compiler-latest.zip).
+  2. **`src`** The js files you want to compile.
 
 You can fully configure how the compiler will behave, by setting directives in the `options`. Every key will be used as a directive for the compiler.
 
@@ -96,7 +96,7 @@ closureCompiler:  {
 ```
 ### Closure Builder
 
-The Closure Builder task has 2 required directives:
+The Closure Builder task has 3 required directives:
 
   1. A way to find the `closurebuilder.py` file. One of the following two directives are required:
     * **`closureLibraryPath`** A path to the Google Closure Library. From there we can infer the location of the closurebuilder.py file
@@ -104,6 +104,8 @@ The Closure Builder task has 2 required directives:
   2. An input method must be defined. One of the following two directives is required:
     * **`inputs`** String, array or grunt file syntax to define build targets
     * **`namespaces`** String or array to define namespaces to build
+  3. The root targets of the closureBuilder. These are defined in the:
+    * **`src`** option of each target. Can be string or array.
 
 The builder has the ability to compile *on-the-fly* the built files. To enable this option you need to set the option `compile` to boolean `true` and then set the location of the `compiler.jar` file via the `compiler` directive.
 
@@ -119,14 +121,13 @@ closureBuilder:  {
     // [REQUIRED] To find the builder executable we need either the path to
     //    closure library or directly the filepath to the builder:
     closureLibraryPath: 'path/to/closure-library', // path to closure library
+    // [OPTIONAL] You can define an alternative path of the builder.
+    //    If set it trumps 'closureLibraryPath' which will not be required.
+    builder: 'path/to/closurebuilder.py',
 
     // [REQUIRED] One of the two following options is required:
     inputs: 'string|Array', // input files (can just be the entry point)
     namespaces: 'string|Array', // namespaces
-
-    // [OPTIONAL] You can define an alternative path of the builder.
-    //    If set it trumps 'closureLibraryPath' which will not be required.
-    builder: 'path/to/closurebuilder.py',
 
     // [OPTIONAL] The location of the compiler.jar
     // This is required if you set the option "compile" to true.
@@ -215,6 +216,16 @@ closureDepsWriter: {
 
 ## Release History
 
+### Grunt 0.4.x Versions
+
+- **v0.7.0**, *10 February 2013*
+  - Complete refactoring. New API. Grunt 0.4.x compatible.
+
+### Grunt 0.3.x Versions
+
+- **v0.6.13**, *09 February 2013*
+  - Plain version bump. Last version to support Grunt 0.3.x
+
 - **v0.6.12**, *12 December 2012*
   - fixed issue [#14](https://github.com/thanpolas/grunt-closure-tools/issues/14), when closureBuilder run from a grunt watch task, the root param got lost.
   - Internal file/folder structure works by [scottlangendyk](https://github.com/scottlangendyk)
@@ -222,16 +233,10 @@ closureDepsWriter: {
 - **v0.6.11**, *07 December 2012*
   - Added support for symlinks in file/path parameters (for compiler, builder, and depswriter), using `stat.isFile() || stat.isSymboliclink()` [#12](https://github.com/thanpolas/grunt-closure-tools/pull/12) (by [jbenet](https://github.com/jbenet)).
 
-- **v0.6.10**, *06 December 2012*
-  - `DepsWriter` outputs to a file named `undefined` if configured `output_file` does not exist [#11](https://github.com/thanpolas/grunt-closure-tools/pull/11) (by [scottlangendyk](https://github.com/scottlangendyk)).
-
-- **v0.6.9**, *04 December 2012*
-  - DepsWriter's `closureLibraryPath` and `output_file` paths now parse Grunt's directives.
-
-...read the full [changelog](https://github.com/thanpolas/grunt-closure-tools/blob/master/CHANGELOG.md).
+...read the full [changelog](CHANGELOG.md).
 
 ## License
-Copyright (c) 2012 Thanasis Polychronakis
-Licensed under the [APACHE2 license](http://www.apache.org/licenses/LICENSE-2.0).
+Copyright (c) 2013 Thanasis Polychronakis
+Licensed under the [MIT license](LICENSE-MIT).
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/5eb066586b681b39b82e56719f75faaa "githalytics.com")](http://githalytics.com/thanpolas/grunt-closure-tools)
