@@ -10,6 +10,16 @@ var cHelpers    = require('./helpers.js'),
 
 module.exports = function(grunt) {
 
+  // if grunt is not provided, then expose internal API
+  if ('object' !== typeof(grunt)) {
+    return {
+      helpers: cHelpers,
+      builder: require('./libBuilder'),
+      compiler: require('./libCompiler'),
+      depsWriter: require('./libDepsWriter')
+    };
+  }
+
   // overwrite helper's logging methods
   cHelpers.log = {
     warn: function(msg) { grunt.log.warn(msg); },
@@ -21,5 +31,7 @@ module.exports = function(grunt) {
   cBuilder(grunt);
   cCompiler(grunt);
   cDepsWriter(grunt);
+
+
 
 };

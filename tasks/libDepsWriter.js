@@ -53,16 +53,14 @@ depsWriter.createCommand = function createCommand( options, fileObj ) {
   // define the depsWriter executable
   var depsExec = options.depswriter || options.closureLibraryPath + DEPSWRITER;
   depsExec = gruntMod.template.process( depsExec );
-
   var cmd = depsExec + ' ';
-
   //
   // Check for root, root_with_prefix and path_with_depspath options
   //
   var directives = ['root', 'root_with_prefix', 'path_with_depspath'],
       directive = directives.shift();
   while(directive) {
-    if ( options[directive] ) {
+    if ( options.hasOwnProperty(directive) ) {
       cmd += cHelpers.makeParam( options[directive], '--' + directive + '=', true);
     }
     directive = directives.shift();

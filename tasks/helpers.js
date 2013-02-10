@@ -162,6 +162,9 @@ helpers.runCommands = function runCommands( commands, cb ) {
       helpers.log.info( 'Command complete for target: ' + commandObj.dest );
     helpers.runCommands( commands, cb );
     } else {
+      if ( 'string' !== typeof(commandObj.dest)) {
+        commandObj.dest = 'undefined';
+      }
       helpers.log.error('FAILED to run command for target: ' + commandObj.dest.red);
       cb(false);
     }

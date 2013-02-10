@@ -218,6 +218,9 @@ closureDepsWriter: {
 
 ### Grunt 0.4.x Versions
 
+- **v0.7.1**, *10 February 2013*
+  - Exposed the internal API for use with node.
+
 - **v0.7.0**, *10 February 2013*
   - Complete refactoring. New API. Grunt 0.4.x compatible.
 
