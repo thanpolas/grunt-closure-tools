@@ -2,6 +2,8 @@
 
 ## Grunt 0.4.x Versions
 
+- **v0.7.0**, *10 February 2013*
+  - Complete refactoring. New API. Grunt 0.4.x compatible.
 
 ## Grunt 0.3.x Versions
 
