@@ -2,6 +2,11 @@
 
 ## Grunt 0.4.x Versions
 
+- **v0.7.2**, *11 February 2013*
+  - Created infra for tests.
+  - Extended the command runner helpers API to support silence execution.
+  - Created the closure options library which contains options from the actual python and java google closure tools.
+
 - **v0.7.1**, *10 February 2013*
   - Exposed the internal API for use with node.
 

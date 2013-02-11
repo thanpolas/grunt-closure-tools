@@ -16,7 +16,8 @@ module.exports = function(grunt) {
       helpers: cHelpers,
       builder: require('./libBuilder'),
       compiler: require('./libCompiler'),
-      depsWriter: require('./libDepsWriter')
+      depsWriter: require('./libDepsWriter'),
+      closureOpts: require('./closureOptions')
     };
   }
 

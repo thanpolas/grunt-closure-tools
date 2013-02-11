@@ -64,13 +64,14 @@ helpers.makeParam = function makeParam(param, directive,
 /**
  * Will shell execute the given command
  *
- * @param {string} command
- * @param {Function} done callback to call when done
+ * @param {string} command.
+ * @param {Function} done callback to call when done.
+ * @param  {boolean=}   optSilent Suppress stdout messages.
  * @return {void}
  */
-helpers.executeCommand = function executeCommand( command, done ) {
+helpers.executeCommand = function executeCommand( command, done, optSilent ) {
 
-  helpers.log.info('Executing: '.blue + command);
+  if ( !optSilent ) helpers.log.info('Executing: '.blue + command);
 
   exec(command, function execCB(err, stdout, stderr) {
     if ( err ) {
@@ -79,7 +80,7 @@ helpers.executeCommand = function executeCommand( command, done ) {
       return;
     }
 
-    helpers.log.info(stdout || stderr);
+    if ( !optSilent ) helpers.log.info(stdout || stderr);
     done(true);
   });
 };
@@ -146,8 +147,9 @@ helpers.fileExists = function fileExists( filePath ) {
  * Execute the compile command on the shell.
  * @param  {Array} commands Array of commandObj objects.
  * @param  {Function} cb the callback to call when done.
+ * @param  {boolean=}   optSilent Silence output.
  */
-helpers.runCommands = function runCommands( commands, cb ) {
+helpers.runCommands = function runCommands( commands, cb , optSilent) {
 
   var commandObj = commands.shift();
 
@@ -159,8 +161,8 @@ helpers.runCommands = function runCommands( commands, cb ) {
 
   helpers.executeCommand( commandObj.cmd , function execCB( state ) {
     if ( state ) {
-      helpers.log.info( 'Command complete for target: ' + commandObj.dest );
-    helpers.runCommands( commands, cb );
+      if (!optSilent) helpers.log.info( 'Command complete for target: ' + commandObj.dest );
+    helpers.runCommands( commands, cb, optSilent);
     } else {
       if ( 'string' !== typeof(commandObj.dest)) {
         commandObj.dest = 'undefined';
@@ -168,7 +170,7 @@ helpers.runCommands = function runCommands( commands, cb ) {
       helpers.log.error('FAILED to run command for target: ' + commandObj.dest.red);
       cb(false);
     }
-  });
+  }, optSilent);
 };
 
 /**

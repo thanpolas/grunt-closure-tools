@@ -218,6 +218,11 @@ closureDepsWriter: {
 
 ### Grunt 0.4.x Versions
 
+- **v0.7.2**, *11 February 2013*
+  - Created infra for tests.
+  - Extended the command runner helpers API to support silence execution.
+  - Created the closure options library which contains options from the actual python and java google closure tools.
+
 - **v0.7.1**, *10 February 2013*
   - Exposed the internal API for use with node.
 
@@ -228,13 +233,6 @@ closureDepsWriter: {
 
 - **v0.6.13**, *09 February 2013*
   - Plain version bump. Last version to support Grunt 0.3.x
-
-- **v0.6.12**, *12 December 2012*
-  - fixed issue [#14](https://github.com/thanpolas/grunt-closure-tools/issues/14), when closureBuilder run from a grunt watch task, the root param got lost.
-  - Internal file/folder structure works by [scottlangendyk](https://github.com/scottlangendyk)
-
-- **v0.6.11**, *07 December 2012*
-  - Added support for symlinks in file/path parameters (for compiler, builder, and depswriter), using `stat.isFile() || stat.isSymboliclink()` [#12](https://github.com/thanpolas/grunt-closure-tools/pull/12) (by [jbenet](https://github.com/jbenet)).
 
 ...read the full [changelog](CHANGELOG.md).
 
