@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 
     closureDepsWriter: {
       options: {
-        closureLibraryPath: 'closure-library',
+        depswriter: cTools.getPath( 'build/depswriter.py' ),
         root: 'test/case/'
       },
       testCase: {
