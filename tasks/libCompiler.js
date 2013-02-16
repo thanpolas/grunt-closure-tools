@@ -28,14 +28,6 @@ compiler.validate = function validate( options )
     return false;
   }
 
-  //
-  // Check for js source files
-  //
-  var src = gruntMod.file.expand(options.src);
-  if (0 === src.length) {
-    helpers.log.warn('WARNING :: "src" files not defined');
-  }
-
   return true;
 
 };
