@@ -3,8 +3,7 @@
 var grunt = require('grunt'),
     sinon = require('sinon'),
     configs = require('../fixtures/configs'),
-    cHelpers = require('../../tasks/helpers'),
-    builder = require('../../tasks/libBuilder');
+    builder = require('../../lib/libBuilder');
 
 
 /*
@@ -39,7 +38,7 @@ exports.builder = {
     stubIsFile.restore();
     done();
   },
-  default_options: function(test) {
+  default_options: function( test ) {
     test.expect(1);
 
     var actual = builder.createCommand( configs.builder.withCompileOpts,

@@ -9,7 +9,7 @@
 
 
 var closureTools = require('./tasks/closureTools');
-
+var ssCompiler = require('superstartup-closure-compiler');
 
 module.exports = function(grunt) {
 
@@ -22,9 +22,6 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
 
-    nodeunit: {
-      all: ['test/{builder,compiler,depsWriter}/**/*.js']
-    },
 
 
     closureDepsWriter: {
@@ -40,7 +37,7 @@ module.exports = function(grunt) {
       options: {
         closureLibraryPath: 'closure-library',
         // This is required if you set the option "compile" to true.
-        compilerFile: 'build/closure_compiler/compiler.jar',
+        compilerFile: ssCompiler.getPathSS(),
         inputs: 'test/case/js/app.js'
 
       },
@@ -72,13 +69,13 @@ module.exports = function(grunt) {
     },
     closureCompiler: {
       options: {
-        compilerFile: 'build/closure_compiler/compiler.jar',
+        compilerFile: ssCompiler.getPathSS(),
         compilerOpts: {
           compilation_level: 'ADVANCED_OPTIMIZATIONS',
           warning_level: 'verbose',
           externs: 'test/case/externs.js',
           summary_detail_level: 3,
-          output_wrapper: '(function(){%output%}).call(this);'
+          output_wrapper: '"(function(){%output%}).call(this);"'
         }
       },
       testCase: {
@@ -103,10 +100,26 @@ module.exports = function(grunt) {
         files: ['tasks/*.js'],
         tasks: ['closureDepsWriter:todoApp']
       }
+    },
+    nodeunit: {
+      all: [
+        // all lib tests
+        'test/{builder,compiler,depsWriter}/**/*.js',
+        // grunt task tests
+        'test/*.js'
+      ]
     }
   });
 
-  // "npm test" runs these tasks
-  grunt.registerTask('test', ['nodeunit']);
+
+
+  // "npm test" runs these tasks,
+  // run all the build tasks first.
+  grunt.registerTask( 'test', [
+    'closureDepsWriter:testCase',
+    'closureBuilder:testCaseBundle',
+    'closureBuilder:testCaseCompile',
+    'closureCompiler:testCase',
+    'nodeunit']);
 
 };

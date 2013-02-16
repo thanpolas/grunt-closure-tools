@@ -1,0 +1,1 @@
+(function(){Ember.Controller.extend({});Ember.d.extend({});Ember.g.extend({});Ember.a.extend({});Ember.a.extend({});Ember.a.extend({});Ember.e.extend({});Ember.f.extend({});Ember.c.extend({});Ember.b.create({});}).call(this);
