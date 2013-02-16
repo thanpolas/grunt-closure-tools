@@ -1,4 +1,4 @@
-# Grunt Closure Tools
+# Grunt Closure Tools [![Build Status](https://travis-ci.org/thanpolas/grunt-closure-tools.png?branch=master)](https://travis-ci.org/thanpolas/grunt-closure-tools)
 
 Google Closure Tools for [grunt](https://github.com/gruntjs/grunt):
 
@@ -12,6 +12,22 @@ Install the module with: `npm install grunt-closure-tools`
 ```shell
 npm install grunt-closure-tools --save-dev
 ```
+
+* * *
+** CAUTION FOR LATEST **
+
+The latest version `0.7.3` is ready on master but cannot publish as `npm publish` [is not available for some time now](https://github.com/isaacs/npm/issues/3165).
+
+Therefore if you want the latest bug-free version you'll have to do this:
+
+```shell
+npm install git://github.com/thanpolas/grunt-closure-tools --save-dev
+```
+
+When npm is available i'll publish...
+
+** END CAUTION FOR LATEST **
+* * *
 
 Then register the task by adding the following line to your `grunt.js`:
 
@@ -218,6 +234,11 @@ closureDepsWriter: {
 
 ### Grunt 0.4.x Versions
 
+- **v0.7.3**, *16 February 2013*
+  - Lots of bug fixes on compiler task, it was broken. Thanks [@hallettj](https://github.com/hallettj)
+  - Made a closure mock, the closure compiler and closure tools (bin file), npm development dependencies.
+  - Added integration tests and travis CI
+
 - **v0.7.2**, *11 February 2013*
   - Created infra for tests.
   - Extended the command runner helpers API to support silence execution.
@@ -228,11 +249,6 @@ closureDepsWriter: {
 
 - **v0.7.0**, *10 February 2013*
   - Complete refactoring. New API. Grunt 0.4.x compatible.
-
-### Grunt 0.3.x Versions
-
-- **v0.6.13**, *09 February 2013*
-  - Plain version bump. Last version to support Grunt 0.3.x
 
 ...read the full [changelog](CHANGELOG.md).
 

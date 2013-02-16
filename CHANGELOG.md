@@ -2,6 +2,11 @@
 
 ## Grunt 0.4.x Versions
 
+- **v0.7.3**, *16 February 2013*
+  - Lots of bug fixes on compiler task, it was broken. Thanks [@hallettj](https://github.com/hallettj)
+  - Made a closure mock, the closure compiler and closure tools (bin file), npm development dependencies.
+  - Added integration tests and travis CI
+
 - **v0.7.2**, *11 February 2013*
   - Created infra for tests.
   - Extended the command runner helpers API to support silence execution.
