@@ -120,7 +120,8 @@ module.exports = function(grunt) {
     'closureBuilder:testCaseBundle',
     'closureBuilder:testCaseCompile',
     'closureCompiler:testCase',
-    'closureCompiler:testCaseNoSrc',
+    // not ready yet
+    //'closureCompiler:testCaseNoSrc',
     'nodeunit']);
 
 };

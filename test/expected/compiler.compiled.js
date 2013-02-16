@@ -1,1 +1,1 @@
-(function(){Ember.Controller.extend({});Ember.d.extend({});Ember.g.extend({});Ember.a.extend({});Ember.a.extend({});Ember.a.extend({});Ember.e.extend({});Ember.f.extend({});Ember.c.extend({});Ember.b.create({});}).call(this);
+(function(){Ember.Controller.extend({});Ember.CollectionView.extend({});Ember.c.extend({});Ember.View.extend({});Ember.View.extend({});Ember.View.extend({});Ember.ContainerView.extend({});Ember.b.extend({});Ember.ArrayProxy.extend({});Ember.a.create({});}).call(this);
