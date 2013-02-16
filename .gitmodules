@@ -1,3 +1,0 @@
-[submodule "test/todoApp"]
-	path = test/todoApp
-	url = git@github.com:thanpolas/todoAppDeppy.git
