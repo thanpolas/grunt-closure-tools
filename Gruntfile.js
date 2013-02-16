@@ -22,8 +22,6 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
 
-
-
     closureDepsWriter: {
       options: {
         closureLibraryPath: 'closure-library',
@@ -81,7 +79,11 @@ module.exports = function(grunt) {
       testCase: {
         src: 'temp/build.bundled.js',
         dest: 'temp/compiler.compiled.js'
+      },
+      testCaseNoSrc: {
+        dest: 'temp/compiler.compiled.js'
       }
+
     },
 
     watch: {
@@ -111,8 +113,6 @@ module.exports = function(grunt) {
     }
   });
 
-
-
   // "npm test" runs these tasks,
   // run all the build tasks first.
   grunt.registerTask( 'test', [
@@ -120,6 +120,7 @@ module.exports = function(grunt) {
     'closureBuilder:testCaseBundle',
     'closureBuilder:testCaseCompile',
     'closureCompiler:testCase',
+    'closureCompiler:testCaseNoSrc',
     'nodeunit']);
 
 };
