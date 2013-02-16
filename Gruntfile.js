@@ -40,21 +40,18 @@ module.exports = function(grunt) {
    closureBuilder:  {
       options: {
         closureLibraryPath: 'closure-library',
-
         // This is required if you set the option "compile" to true.
-        compilerFile:           'build/closure_compiler/compiler.jar',
-
-        // [REQUIRED] One of the two following options is required:
-        inputs:             ['test/todoApp/js/app.js'],
-        output_mode:        'list',
-
-        // [OPTIONAL] if we want builder to perform compile
-        compile:            false // boolean
+        compilerFile:           'build/closure_compiler/compiler.jar'
       },
 
       // any name that describes your operation
-      todoApp: {
-        src: ['test/todoApp/', 'closure-library']
+      testCase: {
+        options: {
+          output_mode:        'script',
+          // [OPTIONAL] if we want builder to perform compile
+          compile:            false // boolean
+        },
+        src: ['test/case/', 'closure-library']
       },
 
       readyjs: {
