@@ -7,8 +7,8 @@
  *
  */
 
-var cDepsWriter   = require('./libDepsWriter'),
-    cHelpers    = require('./helpers.js');
+var cDepsWriter   = require('../lib/libDepsWriter'),
+    cHelpers    = require('../lib/helpers.js');
 
 
 

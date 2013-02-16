@@ -3,7 +3,7 @@
  *
  */
 
-var cHelpers    = require('./helpers.js'),
+var cHelpers    = require('../lib/helpers.js'),
     cBuilder    = require('./closureBuilder'),
     cCompiler   = require('./closureCompiler'),
     cDepsWriter = require('./closureDepsWriter');
@@ -14,10 +14,10 @@ module.exports = function(grunt) {
   if ('object' !== typeof(grunt)) {
     return {
       helpers: cHelpers,
-      builder: require('./libBuilder'),
-      compiler: require('./libCompiler'),
-      depsWriter: require('./libDepsWriter'),
-      closureOpts: require('./closureOptions')
+      builder: require('../lib/libBuilder'),
+      compiler: require('../lib/libCompiler'),
+      depsWriter: require('../lib/libDepsWriter'),
+      closureOpts: require('../lib/closureOptions')
     };
   }
 

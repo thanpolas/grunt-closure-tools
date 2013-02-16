@@ -14,8 +14,8 @@
  *
  */
 
-var cCompiler   = require('./libCompiler'),
-    cHelpers    = require('./helpers.js');
+var cCompiler   = require('../lib/libCompiler'),
+    cHelpers    = require('../lib/helpers.js');
 
 module.exports = function( grunt ) {
   grunt.registerMultiTask('closureCompiler', 'Google Closure Library compiler', function() {

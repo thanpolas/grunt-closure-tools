@@ -9,8 +9,8 @@
  */
 
 
-var cBuilder    = require('./libBuilder'),
-    cHelpers    = require('./helpers.js');
+var cBuilder    = require('../lib/libBuilder'),
+    cHelpers    = require('../lib/helpers.js');
 
 module.exports = function( grunt ) {
 
