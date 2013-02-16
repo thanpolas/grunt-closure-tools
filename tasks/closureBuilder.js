@@ -58,8 +58,6 @@ module.exports = function( grunt ) {
       return;
     }
 
-    console.log('Commands:', commands.length);
-
     //
     // Execute the compile command on the shell.
     //

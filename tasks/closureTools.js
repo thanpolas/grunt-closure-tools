@@ -25,7 +25,11 @@ module.exports = function(grunt) {
   cHelpers.log = {
     warn: function(msg) { grunt.log.warn(msg); },
     info: function(msg) { grunt.log.writeln(msg); },
-    error: function(msg) { grunt.log.error(msg); }
+    error: function(msg) { grunt.log.error(msg); },
+    debug: function(debug, msg) {
+      if ( !debug ) return;
+      grunt.log.writeln( 'debug :: '.blue + msg );
+    }
   };
 
   // register the rest of the tasks

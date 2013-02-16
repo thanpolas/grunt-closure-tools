@@ -19,7 +19,11 @@ var helpers = {};
 helpers.log = {
   warn: function(msg) { console.log(msg); },
   info: function(msg) { console.log(msg); },
-  error: function(msg) { console.log(msg); }
+  error: function(msg) { console.log(msg); },
+  debug: function(debug, msg) {
+    if ( !debug ) return;
+    console.log('DEBUG :: ', msg);
+  }
 };
 
 /**
@@ -75,7 +79,7 @@ helpers.executeCommand = function executeCommand( command, done, optSilent ) {
 
   exec(command, function execCB(err, stdout, stderr) {
     if ( err ) {
-      helpers.log.error(err);
+      helpers.log.error( err );
       done(false);
       return;
     }
