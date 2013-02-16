@@ -8,8 +8,10 @@
  */
 
 
-var closureTools = require('./tasks/closureTools');
-var ssCompiler = require('superstartup-closure-compiler');
+var closureTools  = require('./tasks/closureTools'),
+    ssCompiler    = require('superstartup-closure-compiler'),
+    cTools        = require('closure-tools');
+
 
 module.exports = function(grunt) {
 
@@ -33,7 +35,7 @@ module.exports = function(grunt) {
     },
    closureBuilder:  {
       options: {
-        closureLibraryPath: 'closure-library',
+        builder: cTools.getPath('build/closurebuilder.py'),
         // This is required if you set the option "compile" to true.
         compilerFile: ssCompiler.getPathSS(),
         inputs: 'test/case/js/app.js'
