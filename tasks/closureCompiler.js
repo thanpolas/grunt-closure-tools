@@ -35,7 +35,7 @@ module.exports = function( grunt ) {
 
     this.files.forEach(function(fileObj) {
 
-      cmd = cCompiler.closureCompiler( options, fileObj );
+      cmd = cCompiler.compileCommand( options, fileObj );
 
       if ( cmd ) {
         commands.push( {cmd: cmd, dest: targetName} );
