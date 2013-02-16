@@ -30,48 +30,61 @@ module.exports = function(grunt) {
     closureDepsWriter: {
       options: {
         closureLibraryPath: 'closure-library',
-        root: 'test/todoApp/'
+        root: 'test/case/'
       },
-      todoApp: {
-        //src: 'test/todoApp/',
-        dest: 'test/todoApp/deps.js'
+      testCase: {
+        dest: 'temp/deps.js'
       }
     },
    closureBuilder:  {
       options: {
         closureLibraryPath: 'closure-library',
         // This is required if you set the option "compile" to true.
-        compilerFile:           'build/closure_compiler/compiler.jar'
+        compilerFile: 'build/closure_compiler/compiler.jar',
+        inputs: 'test/case/js/app.js'
+
       },
 
       // any name that describes your operation
-      testCase: {
+      testCaseBundle: {
         options: {
-          output_mode:        'script',
-          // [OPTIONAL] if we want builder to perform compile
-          compile:            false // boolean
+          output_mode: 'script',
+          compile: false // boolean
         },
-        src: ['test/case/', 'closure-library']
+        src: ['test/case/', 'closure-library'],
+        dest: 'temp/build.bundled.js'
       },
-
-      readyjs: {
+      testCaseCompile: {
         options: {
-          inputs: ['test/ready.js/lib/ready.export.js'],
-          namespaces: ['ss.ready', 'ss.ready.compiled'],
+          output_mode: 'compile',
           compile: true,
           compilerOpts: {
             compilation_level: 'ADVANCED_OPTIMIZATIONS',
-            define: ['\'goog.DEBUG=false\'', '\'ss.STANDALONE=true\''],
-            externs: 'test/ready.js/build/node.extern.js',
             warning_level: 'verbose',
+            externs: 'test/case/externs.js',
             summary_detail_level: 3,
             output_wrapper: '(function(){%output%}).call(this);'
           }
         },
-        src: ['test/ready.js/lib/', 'closure-library'],
-        dest: 'temp/ready.js'
+        src: ['test/case/', 'closure-library'],
+        dest: 'temp/build.compiled.js'
       }
-
+    },
+    closureCompiler: {
+      options: {
+        compilerFile: 'build/closure_compiler/compiler.jar',
+        compilerOpts: {
+          compilation_level: 'ADVANCED_OPTIMIZATIONS',
+          warning_level: 'verbose',
+          externs: 'test/case/externs.js',
+          summary_detail_level: 3,
+          output_wrapper: '(function(){%output%}).call(this);'
+        }
+      },
+      testCase: {
+        src: 'temp/build.bundled.js',
+        dest: 'temp/compiler.compiled.js'
+      }
     },
 
     watch: {

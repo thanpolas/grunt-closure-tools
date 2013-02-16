@@ -23,9 +23,8 @@ module.exports = function( grunt ) {
     var compileDone = this.async();
 
     var options = this.options();
-
-    if ( !cCompiler.validate(options) ) {
-      grunt.log.error('closureCompiler Task Failed');
+    if ( !cCompiler.validateOpts( options ) ) {
+      grunt.log.error('closureCompiler Task Failed :: Options');
       return;
     }
 
@@ -34,6 +33,10 @@ module.exports = function( grunt ) {
         targetName = this.target;
 
     this.files.forEach(function(fileObj) {
+      if ( !cCompiler.validateFile( fileObj ) ) {
+        grunt.log.error('closureCompiler Task Failed :: File');
+        return;
+      }
 
       cmd = cCompiler.compileCommand( options, fileObj );
 
@@ -49,7 +52,6 @@ module.exports = function( grunt ) {
       compileDone(false);
       return;
     }
-
     // release the kraken!
     cHelpers.runCommands( commands, compileDone );
 
