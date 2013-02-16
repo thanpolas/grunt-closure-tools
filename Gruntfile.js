@@ -48,7 +48,7 @@ module.exports = function(grunt) {
           output_mode: 'script',
           compile: false // boolean
         },
-        src: ['test/case/', 'closure-library'],
+        src: ['test/case/js/', 'test/case/closureMock'],
         dest: 'temp/build.bundled.js'
       },
       testCaseCompile: {
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
             output_wrapper: '(function(){%output%}).call(this);'
           }
         },
-        src: ['test/case/', 'closure-library'],
+        src: ['test/case/js/', 'test/case/closureMock'],
         dest: 'temp/build.compiled.js'
       }
     },
