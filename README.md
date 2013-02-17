@@ -13,22 +13,6 @@ Install the module with: `npm install grunt-closure-tools`
 npm install grunt-closure-tools --save-dev
 ```
 
-* * *
-** CAUTION FOR LATEST **
-
-The latest version `0.7.3` is ready on master but cannot publish as `npm publish` [is not available for some time now](https://github.com/isaacs/npm/issues/3165).
-
-Therefore if you want the latest bug-free version you'll have to do this:
-
-```shell
-npm install git://github.com/thanpolas/grunt-closure-tools --save-dev
-```
-
-When npm is available i'll publish...
-
-** END CAUTION FOR LATEST **
-* * *
-
 Then register the task by adding the following line to your `grunt.js`:
 
 ```javascript

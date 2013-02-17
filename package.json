@@ -22,8 +22,8 @@
     "grunt": "~0.4.0"
   },
   "devDependencies": {
-    "superstartup-closure-compiler": "git://github.com/thanpolas/superstartup-closure-compiler",
-    "closure-tools": "git://github.com/thanpolas/closure-tools",
+    "superstartup-closure-compiler": "0.1.4",
+    "closure-tools": "0.1.1",
     "grunt-contrib-watch": "0.2.0",
     "grunt-contrib-nodeunit": "0.1.2",
     "sinon": "1.5.2"
