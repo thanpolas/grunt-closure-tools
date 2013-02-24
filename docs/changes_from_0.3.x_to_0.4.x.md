@@ -133,7 +133,7 @@ These configuration directives have been changed:
 * **files** renamed to *src*.
 * **output_file** renamed to *dest*.
 * Everything else has been moved into the `options` Object as per [Grunt's config guidelines][gruntConfig]
-* **options** Object is not merged with Grunt's `options` Object.
+* **options** Object is now merged with Grunt's `options` Object.
 Here's a complete configuration sample for the `closureDepsWriter` task:
 
 ```js
