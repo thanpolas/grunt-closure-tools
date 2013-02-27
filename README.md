@@ -218,6 +218,9 @@ closureDepsWriter: {
 
 ### Grunt 0.4.x Versions
 
+- **v0.7.4**, *??? ??????? 2013*
+  - Minor bug fixes in tasks.
+
 - **v0.7.3**, *16 February 2013*
   - Lots of bug fixes on compiler task, it was broken. Thanks [@hallettj](https://github.com/hallettj)
   - Made a closure mock, the closure compiler and closure tools (bin file), npm development dependencies.
