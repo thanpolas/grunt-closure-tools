@@ -2,6 +2,10 @@
 
 ## Grunt 0.4.x Versions
 
+- **v0.7.4**, *16 Mar 2013*
+  - Now works if *.py have no execution permission. By [teppeis](https://github.com/teppeis) [#21](https://github.com/thanpolas/grunt-closure-tools/pull/21).
+  - Minor bug fixes in tasks.
+
 - **v0.7.3**, *16 February 2013*
   - Lots of bug fixes on compiler task, it was broken. Thanks [@hallettj](https://github.com/hallettj)
   - Made a closure mock, the closure compiler and closure tools (bin file), npm development dependencies.
