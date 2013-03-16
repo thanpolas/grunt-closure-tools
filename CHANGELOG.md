@@ -2,7 +2,7 @@
 
 ## Grunt 0.4.x Versions
 
-- **v0.7.4**, *16 Mar 2013*
+- **v0.7.5**, *16 Mar 2013*
   - Now works if *.py have no execution permission. By [teppeis](https://github.com/teppeis) [#21](https://github.com/thanpolas/grunt-closure-tools/pull/21).
   - Minor bug fixes in tasks.
 
