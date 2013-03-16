@@ -126,4 +126,6 @@ module.exports = function(grunt) {
     //'closureCompiler:testCaseNoSrc',
     'nodeunit']);
 
+  grunt.registerTask('default', ['test']);
+
 };
