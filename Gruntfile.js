@@ -1,7 +1,7 @@
 /*jshint camelcase:false */
 /*
  * Grunt Closure Tools
- * https://github.com/thanpolas/grunt-closure-tools
+ * https://github.com/closureplease/grunt-closure-tools
  *
  * Copyright (c) 2013 Thanasis Polychronakis
  * Licensed under the MIT license.

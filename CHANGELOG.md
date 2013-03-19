@@ -31,7 +31,7 @@
   - Plain version bump. Last version to support Grunt 0.3.x
 
 - **v0.6.12**, *12 December 2012*
-  - fixed issue [#14](https://github.com/thanpolas/grunt-closure-tools/issues/14), when closureBuilder run from a grunt watch task, the root param got lost.
+  - fixed issue [#14](https://github.com/closureplease/grunt-closure-tools/issues/14), when closureBuilder run from a grunt watch task, the root param got lost.
   - Internal file/folder structure works by [scottlangendyk](https://github.com/scottlangendyk)
 
 - **v0.6.11**, *07 December 2012*

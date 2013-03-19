@@ -1,10 +1,12 @@
-# Grunt Closure Tools [![Build Status](https://travis-ci.org/thanpolas/grunt-closure-tools.png?branch=master)](https://travis-ci.org/thanpolas/grunt-closure-tools)
+# Grunt Closure Tools
 
 Google Closure Tools for [grunt](https://github.com/gruntjs/grunt):
 
 * **[Compiler](https://developers.google.com/closure/compiler/)** Compile your JS code using the powerful google closure compiler
 * **[Builder](https://developers.google.com/closure/library/docs/closurebuilder)** Concatenate your JS codebase to a single file, optionally also compile it
 * **[DepsWriter](https://developers.google.com/closure/library/docs/depswriter)** Calculate dependencies of your JS files and generate `deps.js`
+
+[![Build Status](https://travis-ci.org/closureplease/grunt-closure-tools.png?branch=master)](https://travis-ci.org/closureplease/grunt-closure-tools)
 
 ## Getting Started
 Install the module with: `npm install grunt-closure-tools`
@@ -28,7 +30,7 @@ To get a grunt 0.3.x. compatible version please install with:
 npm install grunt-closure-tools@0.6.13 --save-dev
 ```
 
-The Grunt 0.3.x repository can be found frozen [in this branch](https://github.com/thanpolas/grunt-closure-tools/tree/grunt-0.3.x-STABLE).
+The Grunt 0.3.x repository can be found frozen [in this branch](https://github.com/closureplease/grunt-closure-tools/tree/grunt-0.3.x-STABLE).
 
 ## Documentation
 
