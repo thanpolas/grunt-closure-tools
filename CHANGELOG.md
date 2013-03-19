@@ -2,6 +2,9 @@
 
 ## Grunt 0.4.x Versions
 
+- **v0.7.6**, *19 Mar 2013*
+  - helpers.makeParam() - if param is an array, makeParam() should return a flat array after expanding its items with grunt.file.expand and not an array of arrays
+
 - **v0.7.5**, *16 Mar 2013*
   - Now works if *.py have no execution permission. By [teppeis](https://github.com/teppeis) [#21](https://github.com/thanpolas/grunt-closure-tools/pull/21).
   - Minor bug fixes in tasks.
