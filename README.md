@@ -220,6 +220,9 @@ closureDepsWriter: {
 
 ### Grunt 0.4.x Versions
 
+- **v0.7.7**, *19 Mar 2013*
+  - Removed the compiling time optimization for now, it fails the travis tests.
+
 - **v0.7.6**, *19 Mar 2013*
   - helpers.makeParam() - if param is an array, makeParam() should return a flat array after expanding its items with grunt.file.expand and not an array of arrays. By [@centi](https://github.com/centi) [#22](https://github.com/closureplease/grunt-closure-tools/pull/22)
   - Added two options on the compile command to speed up compiling time. Tip from [@igorminar](https://github.com/IgorMinar) on [this commit](https://github.com/angular/angular.js/commit/3bd95dbb1a502575ae8250f49190f153442054eb).
