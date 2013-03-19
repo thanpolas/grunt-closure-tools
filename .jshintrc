@@ -58,7 +58,15 @@
 
   // do not complain for lack of 'use strict';
   "globalstrict": false,
+
+  // This option requires all functions to run in ECMAScript 5's strict mode.
   "strict": false,
+
+  // This option tells JSHint that your code uses ECMAScript 5 specific syntax such as getters and setters.
+  "es5": false,
+
+  // suppress object dot notation warnings, we know what we're doing
+  "sub": true,
 
   /**
    * TEMPORARY OPTIONS
