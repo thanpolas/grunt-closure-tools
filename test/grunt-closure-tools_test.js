@@ -55,6 +55,25 @@ tests.deps = {
 
 };
 
+tests.helpers = {
+  'makeParam flat array': function(test) {
+    test.expect(2);
+    
+    var cHelpers = require('../lib/helpers.js');
+    
+    // make sure it works with simple values
+    var param1 = cHelpers.makeParam( ['test/expected/helpers/foo.js'], '-i', false, true);
+    var param1Expected = " -i test/expected/helpers/foo.js";
+    
+    // as well as with the expanded ones
+    var param2 = cHelpers.makeParam( ['test/expected/helpers/{foo,bar}.js'], '-i', false, true);
+    var param2Expected = " -i test/expected/helpers/bar.js -i test/expected/helpers/foo.js";
+    
+    test.equal(param1, param1Expected);
+    test.equal(param2, param2Expected);
+    test.done();
+  }
+};
 
 
 
