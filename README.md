@@ -220,34 +220,18 @@ closureDepsWriter: {
 
 ### Grunt 0.4.x Versions
 
+- **v0.8.0**, *28 Mar 2013*
+  - Changed internal API, it's a breaking change the package is required as an npm packaged.
+  - Colors changed in build stats output.
 - **v0.7.7**, *19 Mar 2013*
   - Removed the compiling time optimization for now, it fails the travis tests.
-
 - **v0.7.6**, *19 Mar 2013*
   - helpers.makeParam() - if param is an array, makeParam() should return a flat array after expanding its items with grunt.file.expand and not an array of arrays. By [@centi](https://github.com/centi) [#22](https://github.com/closureplease/grunt-closure-tools/pull/22)
   - Added two options on the compile command to speed up compiling time. Tip from [@igorminar](https://github.com/IgorMinar) on [this commit](https://github.com/angular/angular.js/commit/3bd95dbb1a502575ae8250f49190f153442054eb).
   - Moved repository to the *closureplease* organization.
-
-
 - **v0.7.5**, *16 Mar 2013*
   - Now works if *.py have no execution permission. By [teppeis](https://github.com/teppeis) [#21](https://github.com/closureplease/grunt-closure-tools/pull/21).
   - Minor bug fixes in tasks.
-
-- **v0.7.3**, *16 February 2013*
-  - Lots of bug fixes on compiler task, it was broken. Thanks [@hallettj](https://github.com/hallettj)
-  - Made a closure mock, the closure compiler and closure tools (bin file), npm development dependencies.
-  - Added integration tests and travis CI
-
-- **v0.7.2**, *11 February 2013*
-  - Created infra for tests.
-  - Extended the command runner helpers API to support silence execution.
-  - Created the closure options library which contains options from the actual python and java google closure tools.
-
-- **v0.7.1**, *10 February 2013*
-  - Exposed the internal API for use with node.
-
-- **v0.7.0**, *10 February 2013*
-  - Complete refactoring. New API. Grunt 0.4.x compatible.
 
 ...read the full [changelog](CHANGELOG.md).
 
