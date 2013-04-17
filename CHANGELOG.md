@@ -2,6 +2,8 @@
 
 ## Grunt 0.4.x Versions
 
+- **v0.8.1**, *17 Apr 2013*
+  - Added temporary feature to enable merging and overriding of the `compilerOpts` in the `closureCompiler` targets. Feature will be available until [#738](https://github.com/gruntjs/grunt/issues/738) will be fixed.
 - **v0.8.0**, *28 Mar 2013*
   - Changed internal API, it's a breaking change the package is required as an npm packaged.
   - Colors changed in build stats output.
