@@ -2,6 +2,8 @@
 
 ## Grunt 0.4.x Versions
 
+- **master**
+  - Added new option: execOpts. It allow to pass custom options to exec method.
 - **v0.8.0**, *28 Mar 2013*
   - Changed internal API, it's a breaking change the package is required as an npm packaged.
   - Colors changed in build stats output.

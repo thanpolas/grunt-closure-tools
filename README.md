@@ -80,6 +80,14 @@ closureCompiler:  {
        jscomp_off: ['checkTypes', 'fileoverviewTags'],
        summary_detail_level: 3,
        output_wrapper: '(function(){%output%}).call(this);'
+    },
+    // [OPTIONAL] Set exec method options
+    execOpts: {
+       /**
+        * Set maxBuffer if you got message "Error: maxBuffer exceeded."
+        * Node default: 200*1024
+        */
+       maxBuffer: 999999 * 1024
     }
 
   },
@@ -150,6 +158,14 @@ closureBuilder:  {
       * value can be a string or an array
       * If no value is required use null
       */
+    },
+    // [OPTIONAL] Set exec method options
+    execOpts: {
+       /**
+        * Set maxBuffer if you got message "Error: maxBuffer exceeded."
+        * Node default: 200*1024
+        */
+       maxBuffer: 999999 * 1024
     }
 
   },
@@ -220,6 +236,8 @@ closureDepsWriter: {
 
 ### Grunt 0.4.x Versions
 
+- **master**
+  - Added new option: execOpts. It allow to pass custom options to exec method.
 - **v0.8.0**, *28 Mar 2013*
   - Changed internal API, it's a breaking change the package is required as an npm packaged.
   - Colors changed in build stats output.
