@@ -100,7 +100,7 @@ closureCompiler:  {
      * IMPORTANT! The feature is enabled as a temporary solution to [#738](https://github.com/gruntjs/grunt/issues/738).
      * As soon as issue will be fixed this feature will be removed.
      */
-    compilerOpts: {
+    TEMPcompilerOpts: {
     }
 
     // [OPTIONAL] Target files to compile. Can be a string, an array of strings
@@ -244,8 +244,10 @@ closureDepsWriter: {
 
 ### Grunt 0.4.x Versions
 
-- **master**
+- **v0.8.1**, *19 Apr 2013*
+  - Added temporary feature to enable merging and overriding of the `compilerOpts` in the `closureCompiler` targets. Feature will be available until [#738](https://github.com/gruntjs/grunt/issues/738) will be fixed.
   - Added new option: execOpts. It allow to pass custom options to exec method.
+  - Bug fixes [1](https://github.com/closureplease/grunt-closure-tools/commit/3f3f8355e020b0591fa57b7656880f51e9ce5129).
 - **v0.8.0**, *28 Mar 2013*
   - Changed internal API, it's a breaking change the package is required as an npm packaged.
   - Colors changed in build stats output.
