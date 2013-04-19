@@ -3,18 +3,28 @@
   "description": "Google Closure Library Tools for grunt, Compiler, DepsWriter, Builder.",
   "version": "0.8.0",
   "homepage": "https://github.com/closureplease/grunt-closure-tools",
-
   "author": {
     "name": "Thanasis Polychronakis",
     "email": "thanpolas@gmail.com",
     "url": "http://thanpol.as"
   },
-  "repository": {"type": "git", "url": "https://github.com/closureplease/grunt-closure-tools.git"},
-  "bugs": {"url": "https://github.com/closureplease/grunt-closure-tools/issues"},
-  "licenses": [{"type": "MIT", "url": "https://github.com/closureplease/grunt-closure-tools/blob/master/LICENSE-MIT"}],
-
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/closureplease/grunt-closure-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/closureplease/grunt-closure-tools/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/closureplease/grunt-closure-tools/blob/master/LICENSE-MIT"
+    }
+  ],
   "main": "tasks/closureTools.js",
-  "engines": {"node": ">=0.8.0"},
+  "engines": {
+    "node": ">=0.8.0"
+  },
   "scripts": {
     "test": "grunt test"
   },
@@ -26,7 +36,8 @@
     "closure-tools": "0.1.1",
     "grunt-contrib-watch": "0.2.0",
     "grunt-contrib-nodeunit": "0.1.2",
-    "sinon": "1.5.2"
+    "sinon": "1.5.2",
+    "grunt-release": "~0.3.3"
   },
   "keywords": [
     "gruntplugin",
