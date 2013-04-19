@@ -55,7 +55,7 @@ module.exports = function(grunt) {
     }
 
     // release the kraken!
-    cHelpers.runCommands( commands, compileDone, options.execOpts );
+    cHelpers.runCommands( commands, compileDone, false, options.execOpts );
 
   });
 
