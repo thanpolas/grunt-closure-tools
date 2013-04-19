@@ -95,6 +95,14 @@ closureCompiler:  {
   // any name that describes your task
   targetName: {
 
+    /**
+     *[OPTIONAL] Here you can add new or override previous option of the Closure Compiler Directives.
+     * IMPORTANT! The feature is enabled as a temporary solution to [#738](https://github.com/gruntjs/grunt/issues/738).
+     * As soon as issue will be fixed this feature will be removed.
+     */
+    compilerOpts: {
+    }
+
     // [OPTIONAL] Target files to compile. Can be a string, an array of strings
     // or grunt file syntax (<config:...>, *)
     src: 'path/to/file.js',
