@@ -68,7 +68,7 @@ module.exports = function( grunt ) {
         return;
       }
       cHelpers.runStats( Array.prototype.slice.call(commands, 0), options, builderDone);
-    });
+    }, false, options.execOpts);
 
   });
 };
