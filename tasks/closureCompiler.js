@@ -42,7 +42,7 @@ module.exports = function( grunt ) {
 
       if ( cmd ) {
         commands.push( {cmd: cmd, dest: targetName} );
-      } else {
+      } else if (!options.checkModified) {
         grunt.log.error( 'FAILED to create command line for target: ' + targetName.red );
       }
     });
