@@ -1,7 +1,8 @@
 # Grunt Closure Tools :: Changelog
 
 ## Grunt 0.4.x Versions
-
+- **v0.8.2**, *21 Apr 2013*
+  - If checkModified: true and the files not chaged the task does not fail.
 - **v0.8.1**, *17 Apr 2013*
   - Added temporary feature to enable merging and overriding of the `compilerOpts` in the `closureCompiler` targets. Feature will be available until [#738](https://github.com/gruntjs/grunt/issues/738) will be fixed.
   - Added new option: execOpts. It allow to pass custom options to exec method.
