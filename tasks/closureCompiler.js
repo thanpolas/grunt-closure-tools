@@ -48,6 +48,10 @@ module.exports = function( grunt ) {
     });
 
     if ( 0 === commands.length ) {
+      if (options.checkModified) {
+        compileDone(true);
+        return;
+      }
       grunt.log.error('No commands produced for shell execution. Check your config file');
       compileDone(false);
       return;
