@@ -1,6 +1,8 @@
 # Grunt Closure Tools :: Changelog
 
 ## Grunt 0.4.x Versions
+- **v0.8.3**, *22 Apr 2013*
+  - If checkModified: true issue fixed correctly.
 - **v0.8.2**, *21 Apr 2013*
   - If checkModified: true and the files not chaged the task does not fail.
 - **v0.8.1**, *17 Apr 2013*
