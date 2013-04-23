@@ -244,6 +244,8 @@ closureDepsWriter: {
 
 ### Grunt 0.4.x Versions
 
+- **v0.8.2**, *22 Apr 2013*
+  - If checkModified: true and the files not chaged the task does not fail.
 - **v0.8.1**, *19 Apr 2013*
   - Added temporary feature to enable merging and overriding of the `compilerOpts` in the `closureCompiler` targets. Feature will be available until [#738](https://github.com/gruntjs/grunt/issues/738) will be fixed.
   - Added new option: execOpts. It allow to pass custom options to exec method.
@@ -257,9 +259,6 @@ closureDepsWriter: {
   - helpers.makeParam() - if param is an array, makeParam() should return a flat array after expanding its items with grunt.file.expand and not an array of arrays. By [@centi](https://github.com/centi) [#22](https://github.com/closureplease/grunt-closure-tools/pull/22)
   - Added two options on the compile command to speed up compiling time. Tip from [@igorminar](https://github.com/IgorMinar) on [this commit](https://github.com/angular/angular.js/commit/3bd95dbb1a502575ae8250f49190f153442054eb).
   - Moved repository to the *closureplease* organization.
-- **v0.7.5**, *16 Mar 2013*
-  - Now works if *.py have no execution permission. By [teppeis](https://github.com/teppeis) [#21](https://github.com/closureplease/grunt-closure-tools/pull/21).
-  - Minor bug fixes in tasks.
 
 ...read the full [changelog](CHANGELOG.md).
 
