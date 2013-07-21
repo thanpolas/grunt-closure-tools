@@ -79,7 +79,7 @@ closureCompiler:  {
        warning_level: 'verbose',
        jscomp_off: ['checkTypes', 'fileoverviewTags'],
        summary_detail_level: 3,
-       output_wrapper: '(function(){%output%}).call(this);'
+       output_wrapper: '"(function(){%output%}).call(this);"'
     },
     // [OPTIONAL] Set exec method options
     execOpts: {
