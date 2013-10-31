@@ -243,7 +243,8 @@ closureDepsWriter: {
 ## Release History
 
 ### Grunt 0.4.x Versions
-
+- **v0.8.4**, *31 Oct 2013*
+  - Minor change in callback signature of helper 'executeCommand'
 - **v0.8.3**, *22 Apr 2013*
   - If checkModified: true issue fixed correctly.
 - **v0.8.2**, *22 Apr 2013*
