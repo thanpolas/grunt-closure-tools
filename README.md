@@ -113,17 +113,24 @@ closureCompiler:  {
 }
 ```
 Closure compiler is typically used to produce a single output file out of multiple input files. For such scenario you specify `src` and `dest` properties as in the sample above.
-Grunt, however, has richer support for specifying **[source-destination mappings](http://gruntjs.com/configuring-tasks#files)** and you can leverage it for accomplishing other compilation scenarios, e.g. compiling a single output file out of each source file as demonstrates following sample:
+Grunt, however, has richer support for specifying **[source-destination mappings](http://gruntjs.com/configuring-tasks#files)** and you can leverage it for accomplishing
+other compilation scenarios, e.g. compiling a single output file out of each source file as demonstrates the sample below. To support also generation of source maps for this case
+you can specify `create_source_map` in **compilerOpts** with value set to `null`. This causes passing the `dest` filename with suffix `.map` to closure compiler's `create_source_map` parameter
+(this behavior is valid only when source-destination file mapping is specified for processing).
 ```javascript
 closureCompiler: {
     options: {
-		// most options here ommitted for brevity
+		// most options here omitted for brevity
 
 		compilerOpts: {
+			// most options here omitted for brevity
+
+			create_source_map: null,
+
 			/**
-			 * When 'create_source_map' is defined here AND the dest file is specified in
-			 * the source-destination file mapping, the name of dest file extended with '.map' is passed
-			 * as parameter of 'create_source_map' to the compiler (the value specified in options is ignored).
+			 * When 'create_source_map' with value set to null is defined here AND the dest file is specified in
+			 * the form of source-destination file mapping, the name of dest file extended with '.map' is passed
+			 * as value of parameter 'create_source_map' to the compiler to enable a source map file per output file.
 			 * E.g. for
 			 *	 files: [
 			 *		{src: 'lib/a.js', dest: 'build/a.min.js'},
@@ -132,9 +139,6 @@ closureCompiler: {
 			 * the value of 'create_source_map' would be 'build/a.min.js.map' for the first mapping
 			 * and 'build/b.min.js.map' for the second one.
 			 */
-			create_source_map: null,
-
-			// most options here ommitted for brevity
 		}
 	},
 	minify: {

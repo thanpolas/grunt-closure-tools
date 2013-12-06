@@ -40,7 +40,7 @@ module.exports = function( grunt ) {
       }
       // for file mappings overwrite the source_map filename with 'dest' name + '.map' suffix
       if (isMapping) {
-        if (options.compilerOpts && options.compilerOpts.create_source_map !== undefined) {
+        if (options.compilerOpts && options.compilerOpts.create_source_map === null) {
             options.compilerOpts.create_source_map = fileObj.dest + '.map';
         }
       }
