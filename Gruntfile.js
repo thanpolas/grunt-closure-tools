@@ -34,7 +34,7 @@ module.exports = function(grunt) {
         dest: 'temp/deps.js'
       }
     },
-   closureBuilder:  {
+    closureBuilder:  {
       options: {
         builder: cTools.getPath('build/closurebuilder.py'),
         // This is required if you set the option "compile" to true.
