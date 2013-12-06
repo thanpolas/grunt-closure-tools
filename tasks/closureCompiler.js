@@ -32,10 +32,17 @@ module.exports = function( grunt ) {
     var commands = [], cmd,
         targetName = this.target;
 
+    var isMapping = this.files.length > 1;
     this.files.forEach(function(fileObj) {
       if ( !cCompiler.validateFile( fileObj ) ) {
         grunt.log.error('closureCompiler Task Failed :: File');
         return;
+      }
+      // for file mappings overwrite the source_map filename with 'dest' name + '.map' suffix
+      if (isMapping) {
+        if (options.create_source_map) {
+          options.create_source_map = fileObj.dest + '.map';
+        }
       }
 
       cmd = cCompiler.compileCommand( options, fileObj );
