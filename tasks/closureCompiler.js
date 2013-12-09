@@ -41,8 +41,8 @@ module.exports = function( grunt ) {
       }
       // for file mappings overwrite the source_map filename with 'dest' name + '.map' suffix
       if (isMapping && genSourceMap) {
-            options.compilerOpts.create_source_map = fileObj.dest + '.map';
-        }
+        options.compilerOpts.create_source_map = fileObj.dest + '.map';
+      }
 
       cmd = cCompiler.compileCommand( options, fileObj );
 
