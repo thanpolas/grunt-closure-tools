@@ -287,7 +287,7 @@ closureDepsWriter: {
 
 ## Release History
 
-- **v0.8.6**, *06 Dec 2013*
+- **v0.8.7**, *12 Dec 2013*
   - Added option to produce multiple SourceMap files when multiple source-dest compile targets are defined, thanks [@fhurta](https://github.com/fhurta)
 - **v0.8.4**, *31 Oct 2013*
   - Minor change in callback signature of helper 'executeCommand'
