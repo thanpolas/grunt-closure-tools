@@ -33,16 +33,15 @@ module.exports = function( grunt ) {
         targetName = this.target;
 
     var isMapping = this.files.length > 1;
+    var genSourceMap = (options.compilerOpts && options.compilerOpts.create_source_map === null);
     this.files.forEach(function(fileObj) {
       if ( !cCompiler.validateFile( fileObj ) ) {
         grunt.log.error('closureCompiler Task Failed :: File');
         return;
       }
       // for file mappings overwrite the source_map filename with 'dest' name + '.map' suffix
-      if (isMapping) {
-        if (options.compilerOpts && options.compilerOpts.create_source_map === null) {
-            options.compilerOpts.create_source_map = fileObj.dest + '.map';
-        }
+      if (isMapping && genSourceMap) {
+        options.compilerOpts.create_source_map = fileObj.dest + '.map';
       }
 
       cmd = cCompiler.compileCommand( options, fileObj );
