@@ -1,8 +1,10 @@
 var grunt = require('grunt');
 
 var tests = {};
-var tmp = 'temp/',
-    fixtures = 'test/expected/';
+var tmp = 'temp/';
+var fixtures = 'test/expected/';
+var cHelpers = require('task-closure-tools').helpers;
+
 
 tests.builder = {
   'script output, bundling': function(test) {
@@ -59,8 +61,6 @@ tests.helpers = {
   'makeParam simple values': function(test) {
     test.expect(1);
 
-    var cHelpers = require('../lib/helpers.js');
-
     // make sure it works with simple values
     var param1 = cHelpers.makeParam( ['test/expected/helpers/foo.js'], '-i', false, true);
     var param1Expected = ' -i test/expected/helpers/foo.js';
@@ -70,8 +70,6 @@ tests.helpers = {
   },
   'makeParam array expanded values': function(test) {
     test.expect(1);
-
-    var cHelpers = require('../lib/helpers.js');
 
     // as well as with the expanded ones
     var param2 = cHelpers.makeParam( ['test/expected/helpers/{foo,bar}.js'], '-i', false, true);

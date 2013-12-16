@@ -1,9 +1,7 @@
-'use strict';
-
-var grunt = require('grunt'),
-    sinon = require('sinon'),
-    configs = require('../fixtures/configs'),
-    builder = require('../../lib/libBuilder');
+var grunt = require('grunt');
+var sinon = require('sinon');
+var builder = require('task-closure-tools').builder;
+var configs = require('../fixtures/configs');
 
 
 /*
