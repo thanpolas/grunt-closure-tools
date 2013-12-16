@@ -14,8 +14,9 @@
  *
  */
 
-var cCompiler   = require('../lib/libCompiler'),
-    cHelpers    = require('../lib/helpers.js');
+var taskLib = require('task-closure-tools');
+var cCompiler = taskLib.compiler;
+var cHelpers = taskLib.helpers;
 
 module.exports = function( grunt ) {
   grunt.registerMultiTask('closureCompiler', 'Google Closure Library compiler', function() {

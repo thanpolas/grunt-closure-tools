@@ -7,11 +7,9 @@
  *
  */
 
-var cDepsWriter   = require('../lib/libDepsWriter'),
-    cHelpers    = require('../lib/helpers.js');
-
-
-
+var taskLib = require('task-closure-tools');
+var cDepsWriter = taskLib.depsWriter;
+var cHelpers = taskLib.helpers;
 
 module.exports = function(grunt) {
   grunt.registerMultiTask('closureDepsWriter', 'Google Closure Library Dependency Calculator script', function() {

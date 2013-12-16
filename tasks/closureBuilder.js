@@ -8,9 +8,9 @@
  *
  */
 
-
-var cBuilder    = require('../lib/libBuilder'),
-    cHelpers    = require('../lib/helpers.js');
+var taskLib = require('task-closure-tools');
+var cBuilder = taskLib.builder;
+var cHelpers = taskLib.helpers;
 
 module.exports = function( grunt ) {
 
