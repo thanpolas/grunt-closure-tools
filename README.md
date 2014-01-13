@@ -287,6 +287,8 @@ closureDepsWriter: {
 
 ## Release History
 
+- **v0.9.1**,  *13 Jan 2014*
+  - Fixed bug that optExecOptions was passed only to first file in list by [@stforek](https://github.com/stforek).
 - **v0.9.0**, *16 Dec 2013*
   - No changes have been made, this is a stub version to indicate the change in the location of the core library, it has now been moved to its [own repo](https://github.com/thanpolas/task-closure-tools) and nmp package `task-closure-tools`.
 - **v0.8.7**, *12 Dec 2013*
