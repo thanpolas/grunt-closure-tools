@@ -320,3 +320,7 @@ Copyright (c) 2013 Thanasis Polychronakis
 Licensed under the [MIT license](LICENSE-MIT).
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/5eb066586b681b39b82e56719f75faaa "githalytics.com")](http://githalytics.com/thanpolas/grunt-closure-tools)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/closureplease/grunt-closure-tools/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
