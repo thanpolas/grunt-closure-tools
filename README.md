@@ -40,7 +40,7 @@ All three tasks (compiler, builder and depswriter) are [multitasks](https://gith
 
 The Closure Compiler task has two requirements.
 
-  1. **`compilerFile`** The location of the compiler. Find the latest compiler.jar file [here](http://closure-compiler.googlecode.com/files/compiler-latest.zip).
+  1. **`compilerFile`** The location of the compiler. Find the latest compiler.jar file [here](http://dl.google.com/closure-compiler/compiler-latest.zip).
   2. **`src`** The js files you want to compile.
 
 You can fully configure how the compiler will behave, by setting directives in the `options`. Every key will be used as a directive for the compiler.
