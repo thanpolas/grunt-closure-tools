@@ -88,8 +88,18 @@ closureCompiler:  {
         * Node default: 200*1024
         */
        maxBuffer: 999999 * 1024
-    }
-
+    },
+    // [OPTIONAL] Java VM optimization options
+    // see https://code.google.com/p/closure-compiler/wiki/FAQ#What_are_the_recommended_Java_VM_command-line_options?
+    // Setting one of these to 'true' is strongly recommended,
+    // and can reduce compile times by 50-80% depending on compilation size
+    // and hardware.
+    // On server-class hardware, such as with Github's Travis hook,
+    // TieredCompilation should be used; on standard developer hardware,
+    // d32 may be better. Set as appropriate for your environment.
+    // Default for both is 'false'; do not set both to 'true'.
+    d32: true, // will use 'java -client -d32 -jar compiler.jar'
+    TieredCompilation: true // will use 'java -server -XX:+TieredCompilation -jar compiler.jar'
   },
 
   // any name that describes your task
