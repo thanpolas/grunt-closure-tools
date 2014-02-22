@@ -297,6 +297,8 @@ closureDepsWriter: {
 
 ## Release History
 
+- **v0.9.3**,  *22 Jan 2014*
+  - Added compile optimization switches 50%+ gains! Thank you [@probins](https://github.com/probins)
 - **v0.9.2**,  *13 Jan 2014*
   - Fixed bug that optExecOptions was passed only to first file in list by [@stforek](https://github.com/stforek).
 - **v0.9.0**, *16 Dec 2013*
