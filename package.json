@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "grunt": "~0.4.2",
-    "task-closure-tools": "~0.1.4"
+    "task-closure-tools": "~0.1.5"
   },
   "devDependencies": {
     "superstartup-closure-compiler": "0.1.6",
