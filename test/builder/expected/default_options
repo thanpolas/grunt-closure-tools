@@ -1,1 +1,0 @@
-python path/to/builder.py  -i  --root= -o compiled --compiler_jar=path/to/compiler.jar --compiler_flags="--compilation_level=WHITESPACE_ONLY" --compiler_flags="--jscomp_off=checkTypes" --compiler_flags="--jscomp_off=strictModuleDepCheck"
