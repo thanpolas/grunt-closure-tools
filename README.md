@@ -297,6 +297,8 @@ closureDepsWriter: {
 
 ## Release History
 
+- **v0.9.5**, *12 Mar 2014*
+  - Support for ClosureBuilder new JVM flags Thanks [@robertdimarco](https://github.com/robertdimarco)
 - **v0.9.4**, *07 Mar 2014*
   - Properly escapes compiler filename, will fix cases where spaces existed in the filename. Thanks [@tgirardi](https://github.com/tgirardi)
 - **v0.9.3**,  *22 Feb 2014*
