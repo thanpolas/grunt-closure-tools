@@ -49,6 +49,8 @@ You can use grunt file syntax (`<config:...>` or `path/**/*.js`) for the `js` di
 
 Read more about the closure compiler [here](https://developers.google.com/closure/compiler/docs/api-tutorial3).
 
+There is an NPM package that will install the closure compiler `.jar`, check out the [`superstartup-closure-compiler` repository](https://github.com/closureplease/superstartup-closure-compiler#readme), the README there will give you examples of how to plug it to this package.
+
 #### Sample Config for The Closure Compiler
 ```javascript
 closureCompiler:  {
