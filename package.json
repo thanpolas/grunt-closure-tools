@@ -29,15 +29,15 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "grunt": "~0.4.2",
-    "task-closure-tools": "~0.1.5"
+    "grunt": "~0.4.5",
+    "task-closure-tools": "~0.1.7"
   },
   "devDependencies": {
     "superstartup-closure-compiler": "0.1.6",
     "closure-tools": "0.1.4",
-    "grunt-contrib-watch": "0.5.3",
-    "grunt-contrib-nodeunit": "0.3.2",
-    "sinon": "1.9.0",
+    "grunt-contrib-watch": "0.6.1",
+    "grunt-contrib-nodeunit": "0.4.1",
+    "sinon": "1.10.2",
     "grunt-release": "~0.7.0"
   },
   "keywords": [
