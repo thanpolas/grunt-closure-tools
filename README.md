@@ -204,6 +204,9 @@ closureBuilder:  {
     inputs: 'string|Array', // input files (can just be the entry point)
     namespaces: 'string|Array', // namespaces
 
+    // [OPTIONAL] Define the Python binary:
+    pythonBinary: '/path/to/binary/python/',
+
     // [OPTIONAL] The location of the compiler.jar
     // This is required if you set the option "compile" to true.
     compilerFile: 'path/to/compiler.jar',
@@ -299,6 +302,8 @@ closureDepsWriter: {
 
 ## Release History
 
+- **v0.9.7**, *08 Jul 2014*
+  - Upgraded to task-closure-tools v0.1.7, new option `pythonBinary` defines the Python binary.
 - **v0.9.6**, *12 Mar 2014*
   - Added test suite
   - Support for ClosureBuilder new JVM flags Thanks [@robertdimarco](https://github.com/robertdimarco)
