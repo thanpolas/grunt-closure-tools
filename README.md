@@ -344,7 +344,8 @@ closureDepsWriter: {
 ...read the full [changelog](CHANGELOG.md).
 
 ## License
-Copyright (c) 2013 Thanasis Polychronakis
+
+Copyright ©2015 Thanasis Polychronakis
 Licensed under the [MIT license](LICENSE-MIT).
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/5eb066586b681b39b82e56719f75faaa "githalytics.com")](http://githalytics.com/thanpolas/grunt-closure-tools)
