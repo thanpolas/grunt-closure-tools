@@ -302,6 +302,8 @@ closureDepsWriter: {
 
 ## Release History
 
+- **v0.9.8**, *16 Jan 2015*
+  - Upgraded to task-closure-tools v0.1.9, better handling for cases where an empty source is provided. [@betaorbust](https://github.com/betaorbust).
 - **v0.9.7**, *08 Jul 2014*
   - Upgraded to task-closure-tools v0.1.7, new option `pythonBinary` defines the Python binary.
 - **v0.9.6**, *12 Mar 2014*
