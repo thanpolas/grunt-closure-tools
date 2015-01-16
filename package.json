@@ -37,8 +37,8 @@
     "closure-tools": "0.1.4",
     "grunt-contrib-watch": "0.6.1",
     "grunt-contrib-nodeunit": "0.4.1",
-    "sinon": "1.10.2",
-    "grunt-release": "~0.7.0"
+    "sinon": "1.12.2",
+    "grunt-release": "~0.10.0"
   },
   "keywords": [
     "gruntplugin",
