@@ -302,6 +302,8 @@ closureDepsWriter: {
 
 ## Release History
 
+- **v0.9.9**, *08 Jun 2015*
+  - Upgraded to task-closure-tools v0.1.10, Allow command line parameters. [Thank you @GreatCall-VanKirkC](https://github.com/GreatCall-VanKirkC).
 - **v0.9.8**, *16 Jan 2015*
   - Upgraded to task-closure-tools v0.1.9, better handling for cases where an empty source is provided. [@betaorbust](https://github.com/betaorbust).
 - **v0.9.7**, *08 Jul 2014*
