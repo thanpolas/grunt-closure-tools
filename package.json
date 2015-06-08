@@ -30,15 +30,15 @@
   },
   "dependencies": {
     "grunt": "~0.4.5",
-    "task-closure-tools": "~0.1.9"
+    "task-closure-tools": "~0.1.10"
   },
   "devDependencies": {
-    "superstartup-closure-compiler": "0.1.6",
+    "superstartup-closure-compiler": "0.1.7",
     "closure-tools": "0.1.4",
     "grunt-contrib-watch": "0.6.1",
     "grunt-contrib-nodeunit": "0.4.1",
-    "sinon": "1.12.2",
-    "grunt-release": "~0.10.0"
+    "sinon": "1.14.1",
+    "grunt-release": "~0.12.0"
   },
   "keywords": [
     "gruntplugin",
