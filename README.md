@@ -101,7 +101,11 @@ closureCompiler:  {
     // d32 may be better. Set as appropriate for your environment.
     // Default for both is 'false'; do not set both to 'true'.
     d32: true, // will use 'java -client -d32 -jar compiler.jar'
-    TieredCompilation: true // will use 'java -server -XX:+TieredCompilation -jar compiler.jar'
+    TieredCompilation: true, // will use 'java -server -XX:+TieredCompilation -jar compiler.jar'
+
+    // [OPTIONAL] Only display error messages, don't display the closure command line
+    // Default is false
+    silentOutput: true
   },
 
   // any name that describes your task
