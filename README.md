@@ -302,6 +302,8 @@ closureDepsWriter: {
 
 ## Release History
 
+- **v1.0.0**, *26 Jul 2017*
+  - Upgraded to Grunt 1.x so the package will run on Node 6.x and 8.x. [Thank you @pulekies](https://github.com/pulekies).
 - **v0.9.9**, *08 Jun 2015*
   - Upgraded to task-closure-tools v0.1.10, Allow command line parameters. [Thank you @GreatCall-VanKirkC](https://github.com/GreatCall-VanKirkC).
 - **v0.9.8**, *16 Jan 2015*
@@ -354,4 +356,3 @@ Licensed under the [MIT license](LICENSE-MIT).
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/closureplease/grunt-closure-tools/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
